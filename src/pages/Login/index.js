@@ -8,18 +8,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
 
-export default function LogIn() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
 
-  useEffect(() => {
-    if (token !== null) {
-      history.push("/");
-    }
-  }, [token, history]);
+  // useEffect(() => {
+  //   if (token !== null) {
+  //     history.push("/");
+  //   }
+  // }, [token, history]);
 
   function submitForm(event) {
     console.log("hi");

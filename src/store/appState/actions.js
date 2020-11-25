@@ -1,4 +1,4 @@
-import { DEFAULT_MESSAGE_TIMEOUT } from "../../config/constants";
+import { DEFAULT_MESSAGE_TIMEOUT } from "../../../src/config/constants";
 
 export const APP_LOADING = "APP_LOADING";
 export const APP_DONE_LOADING = "APP_DONE_LOADING";
@@ -15,8 +15,8 @@ export const setMessage = (variant, dismissable, text) => {
     payload: {
       variant,
       dismissable,
-      text
-    }
+      text,
+    },
   };
 };
 
@@ -26,7 +26,7 @@ export const showMessageWithTimeout = (
   text,
   timeOutMilliSeconds
 ) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(setMessage(variant, dismissable, text));
 
     const timeout = timeOutMilliSeconds || DEFAULT_MESSAGE_TIMEOUT;

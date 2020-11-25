@@ -1,4 +1,4 @@
-import { apiUrl } from "../../config/constants";
+import { apiUrl } from "../../../src/config/constants";
 import axios from "axios";
 import { selectToken } from "./selectors";
 import {
