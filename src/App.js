@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import { Route, Switch, NavLink } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import { selectAppLoading } from "./store/appState/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserWithStoredToken } from "./store/user/actions";
+import NewCategoryForm from "./components/forms/NewCategoryForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shopping-lists" component={ShoppingListsPage} />
+        <Route path="/inventory/:id/newCategory" component={NewCategoryForm} />
         <Route path="/inventory/:id" component={InventoryPage} />
         <Route path="/budget" component={BudgetPage} />
         <Route path="/signup" component={SignUp} />

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchCategories } from "../../store/categories/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../store/categories/selectors";
@@ -18,6 +19,9 @@ export default function InventoryPage() {
   return (
     <div>
       <h3>Your Inventory</h3>
+      <Link to={`/inventory/${id}/newCategory`}>
+        <button className="button">Add a new category</button>
+      </Link>
       {categories.map((category) => {
         return (
           <Category

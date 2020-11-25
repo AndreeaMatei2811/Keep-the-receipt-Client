@@ -10,7 +10,12 @@ export default function categoriesReducer(state = initialState, action) {
         allCategories: [...action.payload],
       };
     }
-
+    case "newCategorySucces": {
+      return {
+        ...state,
+        allCategories: [...state.allCategories, action.payload],
+      };
+    }
     default: {
       return state;
     }
