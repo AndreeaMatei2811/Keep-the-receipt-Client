@@ -18,56 +18,6 @@ function App() {
   const isLoading = useSelector(selectAppLoading);
   return (
     <div className="App">
-      {/* <nav>
-        <ul>
-          <li>
-            <NavLink
-              to="/"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "navy",
-              }}
-              exact
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/shopping-lists"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "navy",
-              }}
-            >
-              Shopping Lists
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/inventory"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "navy",
-              }}
-            >
-              Inventory
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/budget"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "navy",
-              }}
-            >
-              Budget
-            </NavLink>
-          </li>
-        </ul>
-      </nav> */}
-
       <Navigation />
       <MessageBox />
       {isLoading ? <Loading /> : null}

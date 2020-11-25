@@ -22,25 +22,6 @@ export default function Navigation() {
       {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
-          {/* {token ? (
-            <NavbarItem path="/inventory" linkText="Go to inventory" />
-          ) : (
-            <div></div>
-          )}
-          {token ? (
-            <NavbarItem
-              path="/shopping-lists"
-              linkText="Go to shopping lists"
-            />
-          ) : (
-            <div></div>
-          )}
-          {token ? (
-            <NavbarItem path="//budget" linkText="Go to budget" />
-          ) : (
-            <div></div>
-          )} */}
-
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>
