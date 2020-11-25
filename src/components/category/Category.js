@@ -10,19 +10,26 @@ export default function Category(props) {
             <tr style={{ background: `${props.color}` }}>
               <th>Product name</th>
               <th>Picture</th>
-              {/* <th>Store</th>
-              <th>Price</th> */}
+              <th>Store</th>
+              <th>Price</th>
+              <th>Add to cart</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>produs 1 nume</td>
-              <td>produs 1 poza</td>
-              {/* <td>
-                <button className="button">buton</button>
-              </td> */}
-            </tr>
-          </tbody>
+          {props.products.map((product) => {
+            return (
+              <tbody key={product.id}>
+                <tr>
+                  <td>{product.name}</td>
+                  <td>{product.picture}</td>
+                  <td>{product.store}</td>
+                  <td>{product.price}</td>
+                  <td>
+                    <button className="button">add</button>
+                  </td>
+                </tr>
+              </tbody>
+            );
+          })}
         </table>
       </div>
     </div>

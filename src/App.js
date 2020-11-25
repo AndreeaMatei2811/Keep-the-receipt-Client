@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Route, Switch, NavLink } from "react-router-dom";
 import Navigation from "./components/Navigation";
@@ -12,10 +12,16 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import { selectAppLoading } from "./store/appState/selectors";
 import { useDispatch, useSelector } from "react-redux";
+import { getUserWithStoredToken } from "./store/user/actions";
 
 function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectAppLoading);
+
+  useEffect(() => {
+    dispatch(getUserWithStoredToken());
+  }, [dispatch]);
+
   return (
     <div className="App">
       <Navigation />
@@ -25,7 +31,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shopping-lists" component={ShoppingListsPage} />
-        <Route path="/inventory" component={InventoryPage} />
+        <Route path="/inventory/:id" component={InventoryPage} />
         <Route path="/budget" component={BudgetPage} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
