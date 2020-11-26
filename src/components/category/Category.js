@@ -55,9 +55,11 @@ export default function Category(props) {
         return (
           <Product
             key={product.id}
+            id={product.id}
             name={product.name}
             store={product.store}
             price={product.priceInEuro}
+            unit={product.unit}
             lastBought={product.lastBought}
             quantity={product.quantity}
           />

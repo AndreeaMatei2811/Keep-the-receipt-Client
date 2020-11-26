@@ -54,7 +54,7 @@ export default function NewProductForm() {
           <label>
             Price:{" "}
             <input
-              type="text"
+              type="number"
               value={price}
               onChange={(e) => set_price(e.target.value)}
             />

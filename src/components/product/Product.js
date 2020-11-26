@@ -18,7 +18,7 @@ export default function Product(props) {
   return (
     <div>
       <div>
-        <table className="table">
+        <table>
           <tbody key={props.id}>
             <tr>
               <td>
@@ -27,14 +27,13 @@ export default function Product(props) {
               <td>{props.name}</td>
               {/* <td>{props.picture}</td> */}
               <td>{props.store}</td>
-              <td>{props.priceInEuro}</td>
+              <td>{props.price}</td>
               <td>{props.unit}</td>
               <td>{props.lastBought}</td>
               <td>
                 <button className="button">-</button> {props.quantity}{" "}
                 <button className="button">+</button>
               </td>
-
               <td>
                 <button
                   className="button"
