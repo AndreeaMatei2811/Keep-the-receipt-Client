@@ -19,6 +19,11 @@ export const newCategorySucces = (newCategory) => ({
   payload: newCategory,
 });
 
+export const deleteCategorySuccess = (categoryId) => ({
+  type: "deleteCategorySuccess",
+  payload: categoryId,
+});
+
 export function fetchCategories(id) {
   return async function thunk(dispatch, getState) {
     dispatch(appLoading());
@@ -60,3 +65,26 @@ export function newCategory(name, color) {
     dispatch(appDoneLoading());
   };
 }
+
+export const deleteCategory = (categoryId) => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const { id, token } = selectUser(getState());
+    try {
+      const response = await axios.delete(
+        `${apiUrl}/categories/${id}/deleteCategory/${categoryId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      showMessageWithTimeout("success", false, response.message, 3000);
+      dispatch(deleteCategorySuccess(categoryId));
+      dispatch(appDoneLoading());
+    } catch (e) {
+      console.error(e);
+    }
+  };
+};

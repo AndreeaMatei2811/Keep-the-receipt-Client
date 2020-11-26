@@ -19,13 +19,17 @@ export default function InventoryPage() {
   return (
     <div>
       <h3>Your Inventory</h3>
-      <Link to={`/inventory/${id}/newCategory`}>
-        <button className="button">Add a new category</button>
-      </Link>
+      <div>
+        {" "}
+        <Link to={`/inventory/${id}/newCategory`}>
+          <button className="button">Add a new category</button>
+        </Link>
+      </div>
       {categories.map((category) => {
         return (
           <Category
             key={category.id}
+            id={category.id}
             name={category.name}
             color={category.color}
             products={category.products}
