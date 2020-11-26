@@ -62,6 +62,7 @@ export function newCategory(name, color) {
       showMessageWithTimeout("success", false, response.data.message, 3000)
     );
     dispatch(newCategorySucces(response.data.newCategory));
+    console.log("what is new", newCategory);
     dispatch(appDoneLoading());
   };
 }

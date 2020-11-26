@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { newCategory } from "../../store/categories/actions";
+import { useHistory } from "react-router-dom";
 
 export default function NewCategoryForm() {
   const dispatch = useDispatch();
   const [name, set_name] = useState("");
   const [color, set_color] = useState("");
+  const history = useHistory();
+  const { id } = useParams();
 
   function submitFormNewCategory(event) {
     event.preventDefault();
     dispatch(newCategory(name, color));
-    <Redirect to="/inventory/:id" />;
+    history.push(`/inventory/${id}`);
   }
+  // <Redirect to="/inventory/:id" />;
 
   return (
     <div>

@@ -6,6 +6,7 @@ export default function categoriesReducer(state = initialState, action) {
   switch (action.type) {
     case "/categoriesFetched": {
       return {
+        state,
         allCategories: [...action.payload],
       };
     }

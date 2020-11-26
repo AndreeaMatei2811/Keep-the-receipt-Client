@@ -5,16 +5,22 @@ import { fetchCategories } from "../../store/categories/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../store/categories/selectors";
 import Category from "../../components/category/Category";
+import { fetchProducts } from "../../store/products/actions";
 
 export default function InventoryPage() {
-  const { id } = useParams();
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
-  console.log("do I get the categories with product", categories);
+  const { id } = useParams();
+  console.log("do I get the categories?", categories);
 
   useEffect(() => {
     dispatch(fetchCategories(id));
+    dispatch(fetchProducts());
   }, [dispatch, id]);
+
+  // useEffect(() => {
+
+  // }, [dispatch]);
 
   return (
     <div>
