@@ -32,7 +32,7 @@ export default function productsReducer(state = initialState, action) {
       console.log("action payload", action.payload);
       return {
         state,
-        allProducts: [...state.allProducts, action.payload.quantity],
+        allProducts: [...state.allProducts, action.payload],
       };
     }
 

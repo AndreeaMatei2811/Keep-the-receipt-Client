@@ -8,7 +8,7 @@ export default function NewProductForm() {
   const dispatch = useDispatch();
   const [name, set_name] = useState("");
   const [store, set_store] = useState("");
-  const [price, set_price] = useState("");
+  const [priceInEuro, set_priceInEuro] = useState("");
   const [unit, set_unit] = useState("");
 
   const [quantity, set_quantity] = useState("");
@@ -18,7 +18,7 @@ export default function NewProductForm() {
 
   function submitFormNewProduct(event) {
     event.preventDefault();
-    dispatch(newProduct(categoryId, name, store, price, unit, quantity));
+    dispatch(newProduct(categoryId, name, store, priceInEuro, unit, quantity));
     history.push(`/inventory/${id}`);
   }
 
@@ -53,8 +53,8 @@ export default function NewProductForm() {
             Price:{" "}
             <input
               type="text"
-              value={price}
-              onChange={(e) => set_price(e.target.value)}
+              value={priceInEuro}
+              onChange={(e) => set_priceInEuro(e.target.value)}
             />
           </label>
         </p>

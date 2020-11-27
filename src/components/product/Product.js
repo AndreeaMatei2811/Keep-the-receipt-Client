@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteProduct } from "../../store/products/actions";
 import { increaseQuantity } from "../../store/products/actions";
 import { decreaseQuantity } from "../../store/products/actions";
-// import { addProductToShoppingList } from "../../store/products/actions";
+import { addProductToShoppingList } from "../../store/shoppingList/actions";
 
 // import { useParams } from "react-router-dom";
 
@@ -27,9 +27,9 @@ export default function Product(props) {
     dispatch(decreaseQuantity(productId, quantity));
   }
 
-  // const addToShopping = (productId) => {
-  //   dispatch(addProductToShoppingList(productId));
-  // };
+  const addToShopping = (productId) => {
+    dispatch(addProductToShoppingList(productId));
+  };
 
   return (
     <div>
@@ -40,13 +40,12 @@ export default function Product(props) {
               <td>
                 <button
                   className="button"
-                  // onClick={() => addToShopping(props.id)}
+                  onClick={() => addToShopping(props.id)}
                 >
                   add
                 </button>
               </td>
               <td>{props.name}</td>
-
               <td>{props.store}</td>
               <td>{props.price}</td>
               <td>{props.unit}</td>

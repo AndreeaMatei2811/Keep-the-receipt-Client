@@ -54,7 +54,7 @@ export function newProduct(
   categoryId,
   name,
   store,
-  price,
+  priceInEuro,
   unit,
 
   quantity
@@ -68,7 +68,7 @@ export function newProduct(
       {
         name,
         store,
-        price,
+        priceInEuro,
         unit,
         quantity,
       },
