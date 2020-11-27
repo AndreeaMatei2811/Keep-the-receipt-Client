@@ -22,10 +22,25 @@ export default function productsReducer(state = initialState, action) {
       const newProduct = state.allProducts.filter(
         (category) => category.id !== categoryId
       );
+
       return {
         state,
         allProducts: newProduct,
       };
+
+    case "increaseQuantity": {
+      return {
+        state,
+        allProducts: [...state.allProducts, action.payload],
+      };
+    }
+
+    case "decreaseQuantity": {
+      return {
+        state,
+        allProducts: [...state.allProducts, action.payload],
+      };
+    }
 
     default: {
       return state;

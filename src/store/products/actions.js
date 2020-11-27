@@ -24,6 +24,15 @@ export const deleteProductSuccess = (productId) => ({
   payload: productId,
 });
 
+export const increaseQuantitySuccess = (quantity) => ({
+  type: "increaseQuantity",
+  payload: quantity,
+});
+export const decreaseQuantitySuccess = (quantity) => ({
+  type: "decreaseQuantity",
+  payload: quantity,
+});
+
 export function fetchProducts() {
   return async function thunk(dispatch, getState) {
     dispatch(appLoading());
@@ -101,3 +110,80 @@ export const deleteProduct = (productId) => {
     }
   };
 };
+
+export const decreaseQuantity = (productId, quantity) => {
+  return async (dispatch, getState) => {
+    const { token } = selectUser(getState());
+
+    dispatch(appLoading());
+
+    const response = await axios.patch(
+      `${apiUrl}/products/${productId}/decrease`,
+      {
+        quantity,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    // console.log(response);
+
+    dispatch(
+      showMessageWithTimeout("success", false, "update successfull", 3000)
+    );
+    dispatch(decreaseQuantitySuccess(response.data));
+    dispatch(appDoneLoading());
+  };
+};
+
+export const increaseQuantity = (productId, quantity) => {
+  return async (dispatch, getState) => {
+    const { token } = selectUser(getState());
+
+    dispatch(appLoading());
+
+    const response = await axios.patch(
+      `${apiUrl}/products/${productId}/increase`,
+      {
+        quantity,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    // console.log(response);
+
+    dispatch(
+      showMessageWithTimeout("success", false, "update successfull", 3000)
+    );
+    dispatch(increaseQuantitySuccess(response.data));
+    console.log("do I get responde", response.data);
+    dispatch(appDoneLoading());
+  };
+};
+
+// export function addProductToShoppingList(productId) {
+//   return async (dispatch, getState) => {
+//     const { id, token } = selectUser(getState());
+
+//     dispatch(appLoading());
+//     const response = await axios.post(
+//       `${apiUrl}/products/${id}/${productId}/addProduct`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+//     dispatch(
+//       showMessageWithTimeout("success", false, response.data.message, 3000)
+//     );
+//     // dispatch(newProductSucces(response.data.newProduct));
+
+//     dispatch(appDoneLoading());
+//   };
+// }

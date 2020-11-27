@@ -46,7 +46,7 @@ export default function Category(props) {
           <th>Store</th>
           <th>Price</th>
           <th>Unit</th>
-          <th>LastBought</th>
+          {/* <th>LastBought</th> */}
           <th>Quantity</th>
           <th>Delete product</th>
         </tr>
