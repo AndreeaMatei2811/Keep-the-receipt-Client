@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { fetchCategories } from "../../store/categories/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../store/categories/selectors";
 import Category from "../../components/category/Category";
 import { fetchProducts } from "../../store/products/actions";
+import { selectUser } from "../../store/user/selectors";
 
 export default function InventoryPage() {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
-  const { id } = useParams();
+  const { id } = useSelector(selectUser);
+  console.log(id);
   console.log("do I get the categories?", categories);
 
   useEffect(() => {
     dispatch(fetchCategories(id));
-    dispatch(fetchProducts());
+    dispatch(fetchProducts(id));
   }, [dispatch, id]);
 
   // useEffect(() => {

@@ -42,11 +42,11 @@ export default function Category(props) {
         <tr style={{ background: `${props.color}` }}>
           <th>Add to cart</th>
           <th>Product name</th>
-          {/* <th>Picture</th> */}
+
           <th>Store</th>
           <th>Price</th>
           <th>Unit</th>
-          {/* <th>LastBought</th> */}
+
           <th>Quantity</th>
           <th>Delete product</th>
         </tr>

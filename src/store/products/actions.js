@@ -33,11 +33,11 @@ export const decreaseQuantitySuccess = (quantity) => ({
   payload: quantity,
 });
 
-export function fetchProducts() {
+export function fetchProducts(id) {
   return async function thunk(dispatch, getState) {
     dispatch(appLoading());
     const { token } = selectUser(getState());
-    const res = await axios.get(`${apiUrl}/products`, {
+    const res = await axios.get(`${apiUrl}/products/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -56,7 +56,7 @@ export function newProduct(
   store,
   price,
   unit,
-  lastBought,
+
   quantity
 ) {
   return async (dispatch, getState) => {
@@ -70,7 +70,6 @@ export function newProduct(
         store,
         price,
         unit,
-        lastBought,
         quantity,
       },
       {

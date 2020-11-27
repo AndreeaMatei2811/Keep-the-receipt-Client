@@ -10,7 +10,7 @@ export default function NewProductForm() {
   const [store, set_store] = useState("");
   const [price, set_price] = useState("");
   const [unit, set_unit] = useState("");
-  const [lastBought, set_lastBought] = useState("");
+
   const [quantity, set_quantity] = useState("");
 
   const history = useHistory();
@@ -18,9 +18,7 @@ export default function NewProductForm() {
 
   function submitFormNewProduct(event) {
     event.preventDefault();
-    dispatch(
-      newProduct(categoryId, name, store, price, unit, lastBought, quantity)
-    );
+    dispatch(newProduct(categoryId, name, store, price, unit, quantity));
     history.push(`/inventory/${id}`);
   }
 
@@ -54,7 +52,7 @@ export default function NewProductForm() {
           <label>
             Price:{" "}
             <input
-              type="number"
+              type="text"
               value={price}
               onChange={(e) => set_price(e.target.value)}
             />
@@ -67,16 +65,6 @@ export default function NewProductForm() {
               type="text"
               value={unit}
               onChange={(e) => set_unit(e.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Last date bought:{" "}
-            <input
-              type="date"
-              value={lastBought}
-              onChange={(e) => set_lastBought(e.target.value)}
             />
           </label>
         </p>

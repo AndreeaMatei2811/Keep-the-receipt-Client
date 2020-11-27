@@ -29,13 +29,15 @@ export default function productsReducer(state = initialState, action) {
       };
 
     case "increaseQuantity": {
+      console.log("action payload", action.payload);
       return {
         state,
-        allProducts: [...state.allProducts, action.payload],
+        allProducts: [...state.allProducts, action.payload.quantity],
       };
     }
 
     case "decreaseQuantity": {
+      console.log("action payload", action.payload);
       return {
         state,
         allProducts: [...state.allProducts, action.payload],

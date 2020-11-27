@@ -29,8 +29,15 @@ body {
   cursor: pointer;
 }
 
+table {
+  width: 100%;
+}
+
+thead,
+tbody,
 th,
 td {
+  width: 14%;
   border: 1px solid black;
   margin: 5px;
   padding: 4px 4px;

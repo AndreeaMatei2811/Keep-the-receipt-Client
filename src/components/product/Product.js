@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "../../store/products/actions";
@@ -10,23 +10,20 @@ import { decreaseQuantity } from "../../store/products/actions";
 
 export default function Product(props) {
   const quantity = props.quantity;
-  console.log("what is quantity", quantity);
+  // console.log("what is quantity", quantity);
 
   const dispatch = useDispatch();
   // const { productId } = useParams();
 
   const onDeleteProduct = (id) => {
-    // event.preventDefault();
     dispatch(deleteProduct(id));
   };
 
   function onPlusProduct(productId) {
-    // event.preventDefault();
     dispatch(increaseQuantity(productId, quantity));
   }
 
   function onMinusProduct(productId) {
-    // event.preventDefault();
     dispatch(decreaseQuantity(productId, quantity));
   }
 
@@ -49,11 +46,11 @@ export default function Product(props) {
                 </button>
               </td>
               <td>{props.name}</td>
-              {/* <td>{props.picture}</td> */}
+
               <td>{props.store}</td>
               <td>{props.price}</td>
               <td>{props.unit}</td>
-              {/* <td>{props.lastBought}</td> */}
+
               <td>
                 <button
                   className="button"
