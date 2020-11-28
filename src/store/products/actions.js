@@ -129,9 +129,7 @@ export const decreaseQuantity = (productId, quantity) => {
     );
     // console.log(response);
 
-    dispatch(
-      showMessageWithTimeout("success", false, "update successfull", 3000)
-    );
+    // dispatch(showMessageWithTimeout("success", false, response.message, 3000));
     dispatch(decreaseQuantitySuccess(response.data));
     console.log("what is my response after decrease", response.data.quantity);
     dispatch(appDoneLoading());
@@ -157,9 +155,9 @@ export const increaseQuantity = (productId, quantity) => {
     );
     // console.log(response);
 
-    dispatch(
-      showMessageWithTimeout("success", false, "update successfull", 3000)
-    );
+    // dispatch(
+    //   showMessageWithTimeout("success", false, "update successfull", 3000)
+    // );
     dispatch(increaseQuantitySuccess(response.data));
     console.log("do I get responde", response.data);
     dispatch(appDoneLoading());
