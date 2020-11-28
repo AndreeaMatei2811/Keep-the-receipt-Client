@@ -133,6 +133,7 @@ export const decreaseQuantity = (productId, quantity) => {
       showMessageWithTimeout("success", false, "update successfull", 3000)
     );
     dispatch(decreaseQuantitySuccess(response.data));
+    console.log("what is my response after decrease", response.data.quantity);
     dispatch(appDoneLoading());
   };
 };

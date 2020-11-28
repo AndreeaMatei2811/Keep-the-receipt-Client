@@ -2,14 +2,19 @@ const initialState = {
   shoppingList: [],
 };
 
-export default function productsReducer(state = initialState, action) {
+export default function shoppingListReducer(state = initialState, action) {
   switch (action.type) {
-    case "newProductSucces": {
+    case "/shoppingListFetched": {
       return {
-        state,
-        shoppingList: [...state.shoppingList, action.payload],
+        shoppingList: [...action.payload],
       };
     }
+    case "/addToShoppingListSucces": {
+      return {
+        shoppingList: [action.payload],
+      };
+    }
+
     default: {
       return state;
     }

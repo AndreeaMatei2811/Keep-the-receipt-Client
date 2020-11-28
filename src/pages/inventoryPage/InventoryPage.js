@@ -19,10 +19,6 @@ export default function InventoryPage() {
     dispatch(fetchProducts(id));
   }, [dispatch, id]);
 
-  // useEffect(() => {
-
-  // }, [dispatch]);
-
   return (
     <div>
       <h3>Your Inventory</h3>

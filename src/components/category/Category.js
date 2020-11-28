@@ -37,20 +37,21 @@ export default function Category(props) {
           DELETE Category
         </button>
       </span>
+      <table>
+        <thead>
+          <tr style={{ background: `${props.color}` }}>
+            <th>Add to cart</th>
+            <th>Product name</th>
 
-      <thead>
-        <tr style={{ background: `${props.color}` }}>
-          <th>Add to cart</th>
-          <th>Product name</th>
+            <th>Store</th>
+            <th>Price</th>
+            <th>Unit</th>
 
-          <th>Store</th>
-          <th>Price</th>
-          <th>Unit</th>
-
-          <th>Quantity</th>
-          <th>Delete product</th>
-        </tr>
-      </thead>
+            <th>Quantity</th>
+            <th>Delete product</th>
+          </tr>
+        </thead>
+      </table>
       {filteredProductsByCategoryId.map((product) => {
         return (
           <Product

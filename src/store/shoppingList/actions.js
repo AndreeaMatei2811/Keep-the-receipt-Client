@@ -14,6 +14,13 @@ export function addToShoppingListSucces(addedProduct) {
   };
 }
 
+export function shoppingListFetched(shoppingList) {
+  return {
+    type: "/shoppingListFetched",
+    payload: shoppingList,
+  };
+}
+
 export function addProductToShoppingList(
   productId
   //   shoppingListId,
@@ -40,7 +47,23 @@ export function addProductToShoppingList(
       showMessageWithTimeout("success", false, response.data.message, 3000)
     );
     dispatch(addToShoppingListSucces(response.data.newProduct));
+    dispatch(appDoneLoading());
+  };
+}
 
+export function fetchShoppingList(id) {
+  return async function thunk(dispatch, getState) {
+    dispatch(appLoading());
+    const { token } = selectUser(getState());
+    const res = await axios.get(`${apiUrl}/shoppingLists/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const shoppingList = res.data;
+
+    dispatch(shoppingListFetched(shoppingList));
+    console.log("what shopping list do i get", shoppingList);
     dispatch(appDoneLoading());
   };
 }
