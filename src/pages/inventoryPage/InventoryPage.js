@@ -6,11 +6,15 @@ import { selectCategories } from "../../store/categories/selectors";
 import Category from "../../components/category/Category";
 import { fetchProducts } from "../../store/products/actions";
 import { selectUser } from "../../store/user/selectors";
+import Typography from "@material-ui/core/Typography";
+
+import Button from "@material-ui/core/Button";
 
 export default function InventoryPage() {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const { id } = useSelector(selectUser);
+
   console.log(id);
   console.log("do I get the categories?", categories);
 
@@ -21,11 +25,18 @@ export default function InventoryPage() {
 
   return (
     <div>
-      <h3>Your Inventory</h3>
+      <Typography color="primary" variant="h6">
+        Inventory
+      </Typography>
       <div>
         {" "}
-        <Link to={`/inventory/${id}/newCategory`}>
-          <button className="button">Add a new category</button>
+        <Link
+          to={`/inventory/${id}/newCategory`}
+          style={{ textDecoration: "none" }}
+        >
+          <Button color="primary" variant="contained">
+            Add new category
+          </Button>
         </Link>
       </div>
       {categories.map((category) => {

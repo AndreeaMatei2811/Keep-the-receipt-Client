@@ -1,10 +1,15 @@
 import React from "react";
-import NavbarItem from "./NavbarItem";
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 export default function LoggedOut() {
   return (
     <>
-      <NavbarItem path="/login" linkText="Login" />
+      <Link to={`/login`}>
+        <Button variant="contained" color="primary">
+          Login
+        </Button>
+      </Link>
     </>
   );
 }

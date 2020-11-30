@@ -6,8 +6,34 @@ import { deleteCategory } from "../../store/categories/actions";
 import Product from "../../components/product/Product";
 import { selectProducts } from "../../store/products/selectors";
 import { useParams } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Card from "@material-ui/core/Card";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
 export default function Category(props) {
+  const useStyles = makeStyles((theme) => ({
+    button: {
+      margin: theme.spacing(1),
+    },
+    root: {
+      minWidth: 275,
+      marginTop: 22,
+      marginBottom: 12,
+    },
+    table: {
+      minWidth: 650,
+    },
+  }));
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -24,34 +50,51 @@ export default function Category(props) {
   );
 
   return (
-    <div className="box">
-      <h4>{props.name}</h4>
+    <Card className={classes.root}>
+      <Typography color="primary" variant="h6">
+        {props.name}
+      </Typography>
       <span>
-        <Link to={`/inventory/${id}/${props.id}/newProduct`}>
-          <button className="button">Add new product</button>
+        <Link
+          to={`/inventory/${id}/${props.id}/newProduct`}
+          style={{ textDecoration: "none" }}
+        >
+          <Button color="primary" variant="contained">
+            Add new product
+          </Button>
         </Link>
       </span>
       <span>
         {" "}
-        <button className="button" onClick={() => onDeleteCategory(props.id)}>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.button}
+          startIcon={<DeleteIcon />}
+          onClick={() => onDeleteCategory(props.id)}
+        >
           DELETE Category
-        </button>
+        </Button>
       </span>
-      <table>
-        <thead>
-          <tr style={{ background: `${props.color}` }}>
-            <th>Add to cart</th>
-            <th>Product name</th>
 
-            <th>Store</th>
-            <th>Price</th>
-            <th>Unit</th>
+      <TableContainer
+      // component={Paper}
+      >
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow style={{ background: `${props.color}` }}>
+              <TableCell align="center">Add to cart</TableCell>
+              <TableCell align="center">Product name</TableCell>
+              <TableCell align="center">Store</TableCell>
+              <TableCell align="center">Price</TableCell>
+              <TableCell align="center">Unit</TableCell>
+              <TableCell align="center">Quantity</TableCell>
+              <TableCell align="center">Delete product</TableCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      </TableContainer>
 
-            <th>Quantity</th>
-            <th>Delete product</th>
-          </tr>
-        </thead>
-      </table>
       {filteredProductsByCategoryId.map((product) => {
         return (
           <Product
@@ -66,6 +109,6 @@ export default function Category(props) {
           />
         );
       })}
-    </div>
+    </Card>
   );
 }

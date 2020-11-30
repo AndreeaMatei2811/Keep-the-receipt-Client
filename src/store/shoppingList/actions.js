@@ -21,6 +21,11 @@ export function shoppingListFetched(shoppingList) {
   };
 }
 
+export const checkProductSuccess = (productId) => ({
+  type: "checkProductSuccess",
+  payload: productId,
+});
+
 export function addProductToShoppingList(
   productId
   //   shoppingListId,
@@ -67,3 +72,26 @@ export function fetchShoppingList(id) {
     dispatch(appDoneLoading());
   };
 }
+
+export const checkProduct = (productId) => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const { id, token } = selectUser(getState());
+    try {
+      const response = await axios.delete(
+        `${apiUrl}/shoppingItems/${id}/checkProduct/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      showMessageWithTimeout("success", false, response.message, 3000);
+      dispatch(checkProductSuccess(productId));
+      dispatch(appDoneLoading());
+    } catch (e) {
+      console.error(e);
+    }
+  };
+};

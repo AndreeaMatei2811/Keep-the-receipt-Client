@@ -15,6 +15,17 @@ export default function shoppingListReducer(state = initialState, action) {
       };
     }
 
+    case "checkProductSuccess":
+      const productId = action.payload;
+      const newProduct = state.shoppingList.filter(
+        (product) => product.id !== productId
+      );
+
+      return {
+        state,
+        allProducts: newProduct,
+      };
+
     default: {
       return state;
     }
