@@ -46,10 +46,11 @@ export default function Product(props) {
   }
 
   function onMinusProduct(productId) {
+    console.log("quantity", quantity);
     if (quantity > 0) {
       dispatch(decreaseQuantity(productId, quantity - 1));
       set_quantity(quantity - 1);
-    } else if (quantity === 0) {
+    } else {
       addToShopping(props.id);
     }
   }

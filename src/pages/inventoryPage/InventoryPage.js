@@ -22,6 +22,7 @@ import TableRow from "@material-ui/core/TableRow";
 // import { Autocomplete } from "formik-material-ui-lab";
 
 import Button from "@material-ui/core/Button";
+import { InputAdornment } from "@material-ui/core";
 
 export default function InventoryPage() {
   const dispatch = useDispatch();
@@ -63,7 +64,6 @@ export default function InventoryPage() {
         </Link>
       </div>
       <Card>
-        {/* <SearchIcon /> */}
         <div style={{ width: 300 }}>
           <Autocomplete
             freeSolo
