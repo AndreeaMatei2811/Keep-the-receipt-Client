@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { fetchShoppingList } from "../../store/shoppingList/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { selectShoppingList } from "../../store/shoppingList/selectors";
+import {
+  selectShoppingListFilteredByStore,
+  allStores,
+} from "../../store/shoppingList/selectors";
 import { selectUser } from "../../store/user/selectors";
 import { checkProduct } from "../../store/shoppingList/actions";
 import Card from "@material-ui/core/Card";
@@ -41,8 +44,11 @@ export default function ShoppingListsPage() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const { id, name } = useSelector(selectUser);
-  const shoppingList = useSelector(selectShoppingList);
-  const [filteredByStore, set_filteredByStore] = useState(shoppingList);
+  // const [filteredByStore, set_filteredByStore] = useState(shoppingList);
+  const [storeFilter, setStoreFilter] = useState(null);
+  const filteredByStore = useSelector(
+    selectShoppingListFilteredByStore(storeFilter)
+  );
 
   const handleClose = () => {
     setOpen(false);
@@ -55,16 +61,18 @@ export default function ShoppingListsPage() {
     dispatch(fetchShoppingList(id));
   }, [dispatch, id]);
 
-  console.log("my shopping list", shoppingList);
+  // console.log("my shopping list", shoppingList);
 
   const onChangeSelect = (event) => {
     if (event.target.value === "All") {
-      set_filteredByStore(shoppingList);
+      // set_filteredByStore(shoppingList);
+      setStoreFilter(null);
     } else {
-      const filteredProducts = shoppingList.filter(
-        (store) => store.store === event.target.value
-      );
-      set_filteredByStore(filteredProducts);
+      // const filteredProducts = shoppingList.filter(
+      //   (store) => store.store === event.target.value
+      // );
+      // set_filteredByStore(filteredProducts);
+      setStoreFilter(event.target.value);
     }
   };
 
@@ -72,10 +80,7 @@ export default function ShoppingListsPage() {
     dispatch(checkProduct(id));
   };
 
-  const findAllStores = shoppingList.map((product) => {
-    return product.store;
-  });
-  const uniqueStores = findAllStores.filter((x, i, a) => a.indexOf(x) === i);
+  const uniqueStores = useSelector(allStores);
   // console.log("unique", uniqueStores);
   // console.log("findAllStores", findAllStores);
 

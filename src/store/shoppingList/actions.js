@@ -52,7 +52,7 @@ export function addProductToShoppingList(
       showMessageWithTimeout("success", false, response.data.message, 3000)
     );
     dispatch(addToShoppingListSucces(response.data.addedProduct));
-    console.log("response.data.newProduct", response.data.addedProduct);
+    console.log("response after added product", response.data.addedProduct);
     dispatch(appDoneLoading());
   };
 }
