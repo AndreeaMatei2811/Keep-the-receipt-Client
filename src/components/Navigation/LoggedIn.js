@@ -31,9 +31,7 @@ export default function LoggedIn() {
         </Link>
       </div>
       <div>
-        <Nav.Item style={{ padding: ".5rem 1rem" }}>
-          Welcome <b>{user.name}</b>
-        </Nav.Item>
+        Welcome <b>{user.name}</b>
       </div>
       <div>
         <Button

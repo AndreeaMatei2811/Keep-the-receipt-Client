@@ -35,18 +35,18 @@ export default function Navigation() {
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
 
           <Link to={`/`} style={{ textDecoration: "none" }}>
             <Typography color="primary" variant="h6" className={classes.title}>
-              Keep the receipt
+              <b> Keep the receipt</b>
             </Typography>
           </Link>
 
