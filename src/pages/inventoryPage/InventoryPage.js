@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../store/categories/selectors";
 import { selectProducts } from "../../store/products/selectors";
 import Category from "../../components/category/Category";
+import Product from "../../components/product/Product";
 import { fetchProducts } from "../../store/products/actions";
 import { selectUser } from "../../store/user/selectors";
 import Typography from "@material-ui/core/Typography";
@@ -22,7 +23,6 @@ import TableRow from "@material-ui/core/TableRow";
 // import { Autocomplete } from "formik-material-ui-lab";
 
 import Button from "@material-ui/core/Button";
-import Product from "../../components/product/Product";
 
 export default function InventoryPage() {
   const dispatch = useDispatch();
@@ -63,59 +63,67 @@ export default function InventoryPage() {
           </Button>
         </Link>
       </div>
-
-      <div style={{ width: 300 }}>
-        {/* <SearchIcon /> */}
-        <Autocomplete
-          freeSolo
-          id="free-solo-2-demo"
-          disableClearable
-          options={products.map((product) => product.name)}
-          onChange={(event, newValue) => {
-            set_searchedProduct(newValue);
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Search product"
-              margin="normal"
-              InputProps={{ ...params.InputProps, type: "search" }}
-            />
-          )}
-        />
-      </div>
-      <TableContainer
-      // component={Paper}
-      >
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">Add to cart</TableCell>
-              <TableCell align="center">Product name</TableCell>
-              <TableCell align="center">Store</TableCell>
-              <TableCell align="center">Price</TableCell>
-              <TableCell align="center">Unit</TableCell>
-              <TableCell align="center">Quantity</TableCell>
-              <TableCell align="center">Delete product</TableCell>
-            </TableRow>
-          </TableHead>
-        </Table>
-      </TableContainer>
-
-      {/* <div>
-        {findProduct !== null ? (
-          <Product
-            key={findProduct.id}
-            name={findProduct.name}
-            store={findProduct.store}
-            price={findProduct.priceInEuro}
-            unit={findProduct.unit}
-            quantity={findProduct.quantity}
+      <Card>
+        <div style={{ width: 300 }}>
+          {/* <SearchIcon /> */}
+          <Autocomplete
+            freeSolo
+            id="free-solo-2-demo"
+            disableClearable
+            options={products.map((product) => product.name)}
+            onChange={(event, newValue) => {
+              set_searchedProduct(newValue);
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Search product"
+                margin="normal"
+                InputProps={{ ...params.InputProps, type: "search" }}
+              />
+            )}
           />
-        ) : (
-          "product not found"
-        )}
-      </div> */}
+        </div>
+        <TableContainer
+        // component={Paper}
+        >
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Product name</TableCell>
+                <TableCell align="center">Store</TableCell>
+                <TableCell align="center">Price</TableCell>
+                <TableCell align="center">Unit</TableCell>
+                <TableCell align="center">Quantity</TableCell>
+              </TableRow>
+            </TableHead>
+          </Table>
+        </TableContainer>
+
+        <div>
+          {findProduct ? (
+            <TableContainer
+            // component={Paper}
+            >
+              <Table aria-label="simple table">
+                <TableBody>
+                  <TableRow>
+                    <TableCell align="center">{findProduct.name}</TableCell>
+                    <TableCell align="center">{findProduct.store}</TableCell>
+                    <TableCell align="center">
+                      {findProduct.priceInEuro}
+                    </TableCell>
+                    <TableCell align="center">{findProduct.unit}</TableCell>
+                    <TableCell align="center">{findProduct.quantity}</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </Card>
       {categories.map((category) => {
         return (
           <Category
