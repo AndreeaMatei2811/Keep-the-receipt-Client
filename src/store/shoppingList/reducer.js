@@ -11,19 +11,21 @@ export default function shoppingListReducer(state = initialState, action) {
     }
     case "/addToShoppingListSucces": {
       return {
-        shoppingList: [action.payload],
+        shoppingList: [...state.shoppingList, action.payload],
       };
     }
 
     case "checkProductSuccess":
       const productId = action.payload;
+      console.log("productIs reducer check", productId);
       const newProduct = state.shoppingList.filter(
-        (product) => product.id !== productId
+        (product) => product.shopping_item.productId !== productId
       );
-
+      console.log("new product", newProduct);
+      console.log("state check", state);
       return {
         state,
-        allProducts: newProduct,
+        shoppingList: newProduct,
       };
 
     default: {

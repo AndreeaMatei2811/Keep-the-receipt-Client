@@ -38,7 +38,6 @@ export default function Category(props) {
   const { id } = useParams();
 
   const products = useSelector(selectProducts);
-  console.log("good products", products);
 
   const onDeleteCategory = (id) => {
     // event.preventDefault();

@@ -41,6 +41,7 @@ export default function ShoppingListsPage() {
   const dispatch = useDispatch();
   const shoppingList = useSelector(selectShoppingList);
   const [filteredByStore, set_filteredByStore] = useState(shoppingList);
+  const [open, setOpen] = useState(false);
   const { id, name } = useSelector(selectUser);
 
   useEffect(() => {
@@ -49,16 +50,26 @@ export default function ShoppingListsPage() {
 
   console.log("my shopping list", shoppingList);
 
-  const onCheckProduct = (id) => {
-    dispatch(checkProduct(id));
-  };
-
   const onChangeSelect = (event) => {
     const filteredProducts = shoppingList.filter(
       (store) => store.store === event.target.value
     );
     set_filteredByStore(filteredProducts);
   };
+
+  const onCheckProduct = (id) => {
+    dispatch(checkProduct(id));
+  };
+
+  const findAllStores = shoppingList.map((product) => {
+    return product.store;
+  });
+
+  const uniqueStores = findAllStores.filter((x, i, a) => a.indexOf(x) === i);
+
+  console.log("unique", uniqueStores);
+
+  console.log("findAllStores", findAllStores);
 
   const prices = filteredByStore.map((product) => {
     return product.priceInEuro;
@@ -67,28 +78,32 @@ export default function ShoppingListsPage() {
 
   const totalPrice = prices.reduce((a, b) => a + b, 0);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
   return (
     <div>
       <h3> {name} Shopping Lists</h3>
-
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel htmlFor="outlined-age-native-simple">Store</InputLabel>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-controlled-open-select-label">
+          Select Store
+        </InputLabel>
         <Select
-          native
-          value="Store"
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={filteredByStore.store}
           onChange={onChangeSelect}
-          label="Store"
-          inputProps={{
-            name: "store",
-            id: "outlined-age-native-simple",
-          }}
         >
-          {shoppingList.map((product) => {
-            return (
-              <option key={product.id} value={product.store}>
-                {product.store}
-              </option>
-            );
+          {uniqueStores.map((store) => {
+            return <option value={store}>{store}</option>;
           })}
         </Select>
       </FormControl>
@@ -127,7 +142,9 @@ export default function ShoppingListsPage() {
               );
             })}
             <TableRow>
-              <TableCell align="right">Total Price {totalPrice}</TableCell>
+              <TableCell align="right">
+                Total Price (one of each) {totalPrice}
+              </TableCell>
             </TableRow>
           </Table>
         </TableContainer>

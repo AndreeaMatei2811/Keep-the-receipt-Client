@@ -45,7 +45,7 @@ export function fetchProducts(id) {
     const allProducts = res.data;
 
     dispatch(productsFetched(allProducts));
-    console.log("what products do i get", allProducts);
+    // console.log("what products do i get", allProducts);
     dispatch(appDoneLoading());
   };
 }

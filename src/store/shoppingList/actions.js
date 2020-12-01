@@ -51,7 +51,8 @@ export function addProductToShoppingList(
     dispatch(
       showMessageWithTimeout("success", false, response.data.message, 3000)
     );
-    dispatch(addToShoppingListSucces(response.data.newProduct));
+    dispatch(addToShoppingListSucces(response.data.addedProduct));
+    console.log("response.data.newProduct", response.data.addedProduct);
     dispatch(appDoneLoading());
   };
 }
@@ -86,9 +87,10 @@ export const checkProduct = (productId) => {
           },
         }
       );
-
+      console.log("response after check", response);
       showMessageWithTimeout("success", false, response.message, 3000);
       dispatch(checkProductSuccess(productId));
+
       dispatch(appDoneLoading());
     } catch (e) {
       console.error(e);

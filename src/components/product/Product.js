@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 // import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct } from "../../store/products/actions";
 import { increaseQuantity } from "../../store/products/actions";
 import { decreaseQuantity } from "../../store/products/actions";
 import { addProductToShoppingList } from "../../store/shoppingList/actions";
+import { selectShoppingList } from "../../store/shoppingList/selectors";
+import { fetchShoppingList } from "../../store/shoppingList/actions";
 import { showMessageWithTimeout } from "../../store/appState/actions";
+import { selectUser } from "../../store/user/selectors";
 
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
@@ -34,6 +37,10 @@ export default function Product(props) {
   const classes = useStyles();
   const [quantity, set_quantity] = useState(props.quantity);
   // console.log("what is quantity", quantity);
+  const shoppingList = useSelector(selectShoppingList);
+  // const [newShoppingList, set_newShoppingList] = useState(shoppingList);
+
+  const { id } = useSelector(selectUser);
 
   const dispatch = useDispatch();
 
@@ -67,7 +74,9 @@ export default function Product(props) {
 
   const addToShopping = (productId) => {
     dispatch(addProductToShoppingList(productId));
+    dispatch(fetchShoppingList(id));
   };
+  console.log("new shopping list", shoppingList);
 
   return (
     <div className={classes.root}>
