@@ -1,81 +1,126 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct } from "../../store/products/actions";
 import { increaseQuantity } from "../../store/products/actions";
 import { decreaseQuantity } from "../../store/products/actions";
 import { addProductToShoppingList } from "../../store/shoppingList/actions";
+import { selectShoppingList } from "../../store/shoppingList/selectors";
+import { fetchShoppingList } from "../../store/shoppingList/actions";
+import { showMessageWithTimeout } from "../../store/appState/actions";
+import { selectUser } from "../../store/user/selectors";
+
+import { makeStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+import DeleteIcon from "@material-ui/icons/Delete";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
 // import { useParams } from "react-router-dom";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
 export default function Product(props) {
-  const quantity = props.quantity;
+  const classes = useStyles();
+  const [quantity, set_quantity] = useState(props.quantity);
   // console.log("what is quantity", quantity);
+  const shoppingList = useSelector(selectShoppingList);
+  // const [newShoppingList, set_newShoppingList] = useState(shoppingList);
+
+  const { id } = useSelector(selectUser);
 
   const dispatch = useDispatch();
-  // const { productId } = useParams();
 
   const onDeleteProduct = (id) => {
     dispatch(deleteProduct(id));
   };
 
   function onPlusProduct(productId) {
-    dispatch(increaseQuantity(productId, quantity));
+    dispatch(increaseQuantity(productId, quantity + 1));
+    set_quantity(quantity + 1);
   }
 
   function onMinusProduct(productId) {
-    dispatch(decreaseQuantity(productId, quantity));
+    if (quantity > 0) {
+      dispatch(decreaseQuantity(productId, quantity - 1));
+      set_quantity(quantity - 1);
+    } else if (quantity === 0) {
+      addToShopping(props.id);
+    }
   }
 
   const addToShopping = (productId) => {
     dispatch(addProductToShoppingList(productId));
+    dispatch(fetchShoppingList(id));
   };
+  console.log("new shopping list", shoppingList);
 
   return (
-    <div>
+    <div className={classes.root}>
       <div>
-        <table>
-          <tbody key={props.id}>
-            <tr>
-              <td>
-                <button
-                  className="button"
-                  onClick={() => addToShopping(props.id)}
-                >
-                  add
-                </button>
-              </td>
-              <td>{props.name}</td>
-              <td>{props.store}</td>
-              <td>{props.price}</td>
-              <td>{props.unit}</td>
+        <TableContainer
+        // component={Paper}
+        >
+          <Table className={classes.table} aria-label="simple table">
+            <TableBody>
+              <TableRow style={{ background: `${props.color}` }}>
+                <TableCell align="center">
+                  <IconButton
+                    onClick={() => addToShopping(props.id)}
+                    color="primary"
+                    aria-label="add to shopping cart"
+                  >
+                    <AddShoppingCartIcon />
+                  </IconButton>
+                </TableCell>
+                <TableCell align="center">{props.name}</TableCell>
+                <TableCell align="center">{props.store}</TableCell>
+                <TableCell align="center">{props.price}</TableCell>
+                <TableCell align="center">{props.unit}</TableCell>
 
-              <td>
-                <button
-                  className="button"
-                  onClick={() => onMinusProduct(props.id)}
-                >
-                  -
-                </button>{" "}
-                {props.quantity}{" "}
-                <button
-                  className="button"
-                  onClick={() => onPlusProduct(props.id)}
-                >
-                  +
-                </button>
-              </td>
-              <td>
-                <button
-                  className="button"
-                  onClick={() => onDeleteProduct(props.id)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                <TableCell align="center">
+                  <IconButton
+                    aria-label="add"
+                    color="primary"
+                    onClick={() => onMinusProduct(props.id)}
+                  >
+                    <RemoveIcon />
+                  </IconButton>
+                  {quantity}{" "}
+                  <IconButton
+                    aria-label="add"
+                    color="primary"
+                    onClick={() => onPlusProduct(props.id)}
+                  >
+                    <AddIcon />
+                  </IconButton>
+                </TableCell>
+                <TableCell align="center">
+                  <IconButton
+                    aria-label="delete"
+                    color="secondary"
+                    onClick={() => onDeleteProduct(props.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </div>
   );

@@ -30,17 +30,25 @@ export default function productsReducer(state = initialState, action) {
 
     case "increaseQuantity": {
       console.log("action payload", action.payload);
+      const productIncreased = action.payload;
+      const productNewQuantity = state.allProducts.filter(
+        (product) => product.quantity === productIncreased.quantity
+      );
       return {
         state,
-        allProducts: [...state.allProducts, action.payload],
+        allProducts: [...state.allProducts, productNewQuantity],
       };
     }
 
     case "decreaseQuantity": {
+      const productDecreased = action.payload;
+      const productNewQuantity = state.allProducts.filter(
+        (product) => product.quantity === productDecreased.quantity
+      );
       console.log("action payload", action.payload);
       return {
         state,
-        allProducts: [...state.allProducts, action.payload],
+        allProducts: [...state.allProducts, productNewQuantity],
       };
     }
 
