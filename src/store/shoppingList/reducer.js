@@ -10,9 +10,17 @@ export default function shoppingListReducer(state = initialState, action) {
       };
     }
     case "/addToShoppingListSucces": {
-      return {
-        shoppingList: [...state.shoppingList, action.payload],
-      };
+      console.log("state", state);
+      if (action.payload === undefined) {
+        console.log("action payload reducer", action.payload);
+        return {
+          shoppingList: [state.shoppingList],
+        };
+      } else {
+        return {
+          shoppingList: [...state.shoppingList, action.payload],
+        };
+      }
     }
 
     case "checkProductSuccess":
