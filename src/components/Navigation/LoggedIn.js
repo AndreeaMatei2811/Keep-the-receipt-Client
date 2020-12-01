@@ -20,25 +20,31 @@ export default function LoggedIn() {
 
   return (
     <>
-      <Link to={`/inventory/${user.id}`} style={{ textDecoration: "none" }}>
-        <Button color="primary">Inventory</Button>
-      </Link>
-      <Link to={`/shopping-lists`} style={{ textDecoration: "none" }}>
-        <Button color="primary">Shopping Lists</Button>
-      </Link>
-
-      <Nav.Item style={{ padding: ".5rem 1rem" }}>
-        Welcome <b>{user.name}</b>
-      </Nav.Item>
-
-      <Button
-        size="small"
-        variant="contained"
-        color="primary"
-        onClick={logUserOut}
-      >
-        Logout
-      </Button>
+      <div>
+        <Link to={`/inventory/${user.id}`} style={{ textDecoration: "none" }}>
+          <Button color="primary">Inventory</Button>
+        </Link>
+      </div>
+      <div>
+        <Link to={`/shopping-lists`} style={{ textDecoration: "none" }}>
+          <Button color="primary">Shopping Lists</Button>
+        </Link>
+      </div>
+      <div>
+        <Nav.Item style={{ padding: ".5rem 1rem" }}>
+          Welcome <b>{user.name}</b>
+        </Nav.Item>
+      </div>
+      <div>
+        <Button
+          size="small"
+          variant="contained"
+          color="default"
+          onClick={logUserOut}
+        >
+          Logout
+        </Button>{" "}
+      </div>
     </>
   );
 }

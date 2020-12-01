@@ -70,7 +70,7 @@ export default function Login() {
             <Button
               size="small"
               variant="contained"
-              color="primary"
+              color="default"
               type="submit"
               onClick={submitForm}
             >

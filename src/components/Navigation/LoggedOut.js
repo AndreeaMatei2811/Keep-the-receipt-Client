@@ -6,7 +6,7 @@ export default function LoggedOut() {
   return (
     <>
       <Link to={`/login`} style={{ textDecoration: "none" }}>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="default">
           Login
         </Button>
       </Link>

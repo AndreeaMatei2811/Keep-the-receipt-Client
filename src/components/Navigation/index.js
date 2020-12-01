@@ -50,7 +50,7 @@ export default function Navigation() {
             </Typography>
           </Link>
 
-          <Button color="primary">{loginLogoutControls}</Button>
+          <Button color="default">{loginLogoutControls}</Button>
         </Toolbar>
       </AppBar>
     </div>
