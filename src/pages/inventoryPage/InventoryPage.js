@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../../store/categories/selectors";
 import { selectProducts } from "../../store/products/selectors";
 import Category from "../../components/category/Category";
-import Product from "../../components/product/Product";
 import { fetchProducts } from "../../store/products/actions";
 import { selectUser } from "../../store/user/selectors";
 import Typography from "@material-ui/core/Typography";
@@ -64,8 +63,8 @@ export default function InventoryPage() {
         </Link>
       </div>
       <Card>
+        {/* <SearchIcon /> */}
         <div style={{ width: 300 }}>
-          {/* <SearchIcon /> */}
           <Autocomplete
             freeSolo
             id="free-solo-2-demo"
@@ -84,6 +83,7 @@ export default function InventoryPage() {
             )}
           />
         </div>
+
         <TableContainer
         // component={Paper}
         >

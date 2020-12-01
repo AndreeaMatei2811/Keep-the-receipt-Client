@@ -50,7 +50,6 @@ export default function Product(props) {
 
   function onPlusProduct(productId) {
     dispatch(increaseQuantity(productId, quantity + 1));
-
     set_quantity(quantity + 1);
   }
 
@@ -60,15 +59,6 @@ export default function Product(props) {
       set_quantity(quantity - 1);
     } else if (quantity === 0) {
       addToShopping(props.id);
-    } else if (quantity < 0) {
-      dispatch(
-        showMessageWithTimeout(
-          "success",
-          false,
-          "Product already added to shopping list",
-          3000
-        )
-      );
     }
   }
 

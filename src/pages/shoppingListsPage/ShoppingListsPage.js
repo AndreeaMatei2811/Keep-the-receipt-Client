@@ -39,10 +39,17 @@ export default function ShoppingListsPage() {
   }));
   const classes = useStyles();
   const dispatch = useDispatch();
-  const shoppingList = useSelector(selectShoppingList);
-  const [filteredByStore, set_filteredByStore] = useState(shoppingList);
   const [open, setOpen] = useState(false);
   const { id, name } = useSelector(selectUser);
+  const shoppingList = useSelector(selectShoppingList);
+  const [filteredByStore, set_filteredByStore] = useState(shoppingList);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   useEffect(() => {
     dispatch(fetchShoppingList(id));
@@ -51,10 +58,14 @@ export default function ShoppingListsPage() {
   console.log("my shopping list", shoppingList);
 
   const onChangeSelect = (event) => {
-    const filteredProducts = shoppingList.filter(
-      (store) => store.store === event.target.value
-    );
-    set_filteredByStore(filteredProducts);
+    if (event.target.value === "All") {
+      set_filteredByStore(shoppingList);
+    } else {
+      const filteredProducts = shoppingList.filter(
+        (store) => store.store === event.target.value
+      );
+      set_filteredByStore(filteredProducts);
+    }
   };
 
   const onCheckProduct = (id) => {
@@ -64,31 +75,21 @@ export default function ShoppingListsPage() {
   const findAllStores = shoppingList.map((product) => {
     return product.store;
   });
-
   const uniqueStores = findAllStores.filter((x, i, a) => a.indexOf(x) === i);
-
-  console.log("unique", uniqueStores);
-
-  console.log("findAllStores", findAllStores);
+  // console.log("unique", uniqueStores);
+  // console.log("findAllStores", findAllStores);
 
   const prices = filteredByStore.map((product) => {
     return product.priceInEuro;
   });
-  console.log("prices", prices);
-
+  // console.log("prices", prices);
   const totalPrice = prices.reduce((a, b) => a + b, 0);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   return (
     <div>
-      <h3> {name} Shopping Lists</h3>
+      <Typography color="primary" variant="h6">
+        {name} Shopping Lists
+      </Typography>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-controlled-open-select-label">
           Select Store
@@ -102,6 +103,7 @@ export default function ShoppingListsPage() {
           value={filteredByStore.store}
           onChange={onChangeSelect}
         >
+          <option value="All">All stores</option>
           {uniqueStores.map((store) => {
             return <option value={store}>{store}</option>;
           })}

@@ -1,5 +1,5 @@
 export function selectShoppingList(state) {
-  console.log("do i get to selector", state);
+  // console.log("do i get to selector", state);
   return state.shoppingList.shoppingList;
 }
 
