@@ -12,7 +12,7 @@ export default function HomePage() {
   const user = useSelector(selectUser);
   return (
     <div>
-      <Typography color="primary" variant="h4" style={{ margin: 30 }}>
+      <Typography variant="h4" style={{ margin: 20 }}>
         Keep the receipt APP
       </Typography>
 
@@ -46,10 +46,10 @@ export default function HomePage() {
         <div></div>
       )} */}
       <Card>
-        <Typography color="primary" variant="h5" style={{ margin: 30 }}>
+        <Typography variant="h5" style={{ margin: 20 }}>
           What is the deal with this app
         </Typography>
-        <Typography color="primary" variant="h6" style={{ margin: 30 }}>
+        <Typography variant="h6" style={{ margin: 20 }}>
           Here is gonna be the coolest story about not buying more than you need
         </Typography>
       </Card>

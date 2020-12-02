@@ -1,13 +1,13 @@
 .App {
   text-align: center;
-  width: 80%;
+  width: 75%;
   margin: auto;
   /* background-color: #f3f2ea; */
 }
 
 html,
 body {
-  background-color: #69be94;
+  background-color: #f2fff1;
   font-size: 16px;
   margin: 1rem 2rem;
 }

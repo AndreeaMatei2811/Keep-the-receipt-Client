@@ -5,29 +5,18 @@ import { login } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
+import Alert from "@material-ui/lab/Alert";
 
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import { Card, Typography } from "@material-ui/core";
 
-import { useFormik } from "formik";
-import * as yup from "yup";
-
-const validationSchema = yup.object({
-  email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password: yup
-    .string("Enter your password")
-    .max(30, "Password should be of max 30 characters length")
-    .required("Password is required"),
-});
-
 export default function Login() {
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
+
+  const [message, set_message] = useState(false);
+  const [messageLength, set_messageLength] = useState(false);
 
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
@@ -39,27 +28,36 @@ export default function Login() {
     }
   }, [token, history]);
 
-  const formik = useFormik({
-    initialValues: {
-      email: email,
-      password: password,
-    },
-    validationSchema: validationSchema,
-    onSubmit: submitForm,
-  });
-
   function submitForm(event) {
     event.preventDefault();
-    dispatch(login(email, password));
-    setEmail("");
-    setPassword("");
+    if (email === "" || password === "") {
+      set_message(true);
+    } else if (email.length > 30 || password.length > 30) {
+      set_messageLength(true);
+    } else {
+      dispatch(login(email, password));
+      setEmail("");
+      setPassword("");
+    }
   }
 
   return (
     <div>
-      <Typography color="primary" variant="h4" style={{ margin: 30 }}>
+      <Typography variant="h4" style={{ margin: 20 }}>
         Login
       </Typography>
+
+      {message ? (
+        <Alert severity="warning">Please fill in both email and password</Alert>
+      ) : (
+        <div></div>
+      )}
+      {messageLength ? (
+        <Alert severity="warning">Invalid input</Alert>
+      ) : (
+        <div></div>
+      )}
+
       <Card style={{ margin: 50 }}>
         <form onSubmit={submitForm}>
           <div style={{ margin: 30 }}>
@@ -69,11 +67,7 @@ export default function Login() {
                 id="email"
                 name="email"
                 label="Email"
-                // value={formik.values.email}
-                // onChange={formik.handleChange}
                 onChange={(event) => setEmail(event.target.value)}
-                error={formik.touched.email && Boolean(formik.errors.email)}
-                helperText={formik.touched.email && formik.errors.email}
               />
             </FormControl>
           </div>
@@ -85,13 +79,7 @@ export default function Login() {
                 name="password"
                 label="Password"
                 type="password"
-                // value={formik.values.password}
-                // onChange={formik.handleChange}
                 onChange={(event) => setPassword(event.target.value)}
-                error={
-                  formik.touched.password && Boolean(formik.errors.password)
-                }
-                helperText={formik.touched.password && formik.errors.password}
               />
             </FormControl>
           </div>
@@ -100,7 +88,7 @@ export default function Login() {
               <Button
                 size="small"
                 variant="contained"
-                color="default"
+                color="primary"
                 type="submit"
               >
                 Log in

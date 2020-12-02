@@ -43,9 +43,10 @@ export default function ShoppingListsPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const { id, name } = useSelector(selectUser);
+  const { id } = useSelector(selectUser);
   // const [filteredByStore, set_filteredByStore] = useState(shoppingList);
   const [storeFilter, setStoreFilter] = useState(null);
+  const [shoppingQuantity, set_shoppingQuantity] = useState(1);
   const filteredByStore = useSelector(
     selectShoppingListFilteredByStore(storeFilter)
   );
@@ -92,8 +93,8 @@ export default function ShoppingListsPage() {
 
   return (
     <div>
-      <Typography color="primary" variant="h6">
-        {name} Shopping Lists
+      <Typography variant="h6" style={{ margin: 20 }}>
+        Shopping Lists
       </Typography>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-controlled-open-select-label">
@@ -126,6 +127,7 @@ export default function ShoppingListsPage() {
                 <TableCell align="center">Product name</TableCell>
                 <TableCell align="center">Store</TableCell>
                 <TableCell align="center">Price</TableCell>
+                <TableCell align="center">Shopping quantity</TableCell>
               </TableRow>
             </TableHead>
             {filteredByStore.map((product) => {
@@ -144,6 +146,16 @@ export default function ShoppingListsPage() {
                     <TableCell align="center">{product.name}</TableCell>
                     <TableCell align="center">{product.store}</TableCell>
                     <TableCell align="center">{product.priceInEuro}</TableCell>
+                    <TableCell align="center">
+                      <input
+                        style={{ width: 40 }}
+                        onChange={(event) =>
+                          set_shoppingQuantity(
+                            event.target.value * product.priceInEuro
+                          )
+                        }
+                      />
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               );

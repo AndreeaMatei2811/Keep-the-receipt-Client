@@ -5,17 +5,18 @@ import { signUp } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
-
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-
-import { Formik, Form } from "formik";
+import Alert from "@material-ui/lab/Alert";
 import { Card, Typography } from "@material-ui/core";
 
 export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, set_message] = useState(false);
+  const [messageLength, set_messageLength] = useState(false);
+
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
@@ -28,19 +29,34 @@ export default function SignUp() {
 
   function submitForm(event) {
     event.preventDefault();
-
-    dispatch(signUp(name, email, password));
-
-    setEmail("");
-    setPassword("");
-    setName("");
+    if (name === "" || email === "" || password === "") {
+      set_message(true);
+    } else if (name.length > 30 || email.length > 30 || password.length > 30) {
+      set_messageLength(true);
+    } else {
+      dispatch(signUp(name, email, password));
+      setEmail("");
+      setPassword("");
+      setName("");
+    }
   }
 
   return (
     <div>
-      <Typography color="primary" variant="h4" style={{ margin: 30 }}>
+      <Typography variant="h4" style={{ margin: 20 }}>
         Signup
       </Typography>
+      {message ? (
+        <Alert severity="warning">Please fill in all fields</Alert>
+      ) : (
+        <div></div>
+      )}
+      {messageLength ? (
+        <Alert severity="warning">Invalid input</Alert>
+      ) : (
+        <div></div>
+      )}
+
       <Card style={{ margin: 50 }}>
         {/* <Form> */}
         <div style={{ margin: 30 }}>
@@ -82,7 +98,7 @@ export default function SignUp() {
             <Button
               size="small"
               variant="contained"
-              color="default"
+              color="primary"
               type="submit"
               onClick={submitForm}
             >

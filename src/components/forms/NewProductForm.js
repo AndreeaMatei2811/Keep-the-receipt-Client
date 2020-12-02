@@ -7,7 +7,6 @@ import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
-import { Formik, Form } from "formik";
 import { Card, Typography } from "@material-ui/core";
 
 export default function NewProductForm() {
@@ -17,7 +16,6 @@ export default function NewProductForm() {
   const [priceInEuro, set_priceInEuro] = useState("");
   const [unit, set_unit] = useState("");
   const [quantity, set_quantity] = useState("");
-
   const [message, set_message] = useState(false);
   const [messageLength, set_messageLength] = useState(false);
 
@@ -28,8 +26,13 @@ export default function NewProductForm() {
     event.preventDefault();
     if (name === "") {
       set_message(true);
-    } else if (name.length > 30 || store.length > 30 || unit.length > 30) {
-      console.log("lenght", name.lenght);
+    } else if (
+      name.length > 30 ||
+      store.length > 30 ||
+      unit.length > 30 ||
+      priceInEuro.length > 30 ||
+      quantity.length > 30
+    ) {
       set_messageLength(true);
     } else {
       dispatch(
@@ -41,7 +44,7 @@ export default function NewProductForm() {
 
   return (
     <div>
-      <Typography color="primary" variant="h4" style={{ margin: 30 }}>
+      <Typography variant="h4" style={{ margin: 20 }}>
         Add a new product
       </Typography>
       {message ? (
@@ -50,9 +53,7 @@ export default function NewProductForm() {
         <div></div>
       )}
       {messageLength ? (
-        <Alert severity="warning">
-          Invalid Input - name or store or unit to long
-        </Alert>
+        <Alert severity="warning">Invalid Input</Alert>
       ) : (
         <div></div>
       )}

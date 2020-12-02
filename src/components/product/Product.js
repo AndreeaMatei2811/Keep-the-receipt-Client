@@ -28,15 +28,15 @@ const useStyles = makeStyles((theme) => ({
     },
     table: {
       minWidth: 650,
-      margin: 30,
+      // margin: 200,
     },
   },
 }));
 
 export default function Product(props) {
   const classes = useStyles();
+
   const [quantity, set_quantity] = useState(props.quantity);
-  // console.log("what is quantity", quantity);
 
   const dispatch = useDispatch();
 
@@ -50,7 +50,6 @@ export default function Product(props) {
   }
 
   function onMinusProduct(productId, event) {
-    event.preventDefault();
     console.log("quantity", quantity);
     if (quantity > 0) {
       dispatch(decreaseQuantity(productId, quantity - 1));
@@ -67,12 +66,10 @@ export default function Product(props) {
   return (
     <div className={classes.root}>
       <div>
-        <TableContainer
-        // component={Paper}
-        >
+        <TableContainer>
           <Table className={classes.table} aria-label="simple table">
             <TableBody>
-              <TableRow style={{ background: `${props.color}` }}>
+              <TableRow style={{ marginTop: 1, marginBottom: 1 }}>
                 <TableCell align="center">
                   <IconButton
                     onClick={() => addToShopping(props.id)}

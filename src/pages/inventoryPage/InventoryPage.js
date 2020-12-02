@@ -7,34 +7,48 @@ import { selectProducts } from "../../store/products/selectors";
 import Category from "../../components/category/Category";
 import { fetchProducts } from "../../store/products/actions";
 import { selectUser } from "../../store/user/selectors";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
+import {
+  Typography,
+  TextField,
+  Card,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@material-ui/core";
+
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import SearchIcon from "@material-ui/icons/Search";
-import { Formik, Field } from "formik";
-import Card from "@material-ui/core/Card";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-
-// import { Autocomplete } from "formik-material-ui-lab";
-
 import Button from "@material-ui/core/Button";
 
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+
 export default function InventoryPage() {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        light: "#757ce8",
+        main: "#2e7c31",
+        dark: "#004f04",
+        contrastText: "#fff",
+      },
+      secondary: {
+        light: "#ff7961",
+        main: "#bf360c",
+        dark: "#ba000d",
+        contrastText: "#fff",
+      },
+    },
+  });
+
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const products = useSelector(selectProducts);
-  // console.log("products", products);
+
   const { id } = useSelector(selectUser);
   const [searchedProduct, set_searchedProduct] = useState("");
   console.log("searched", searchedProduct);
-
-  // console.log(id);
-  // console.log("do I get the categories?", categories);
 
   useEffect(() => {
     dispatch(fetchCategories(id));
@@ -44,24 +58,30 @@ export default function InventoryPage() {
   const findProduct = products.find(
     (product) => searchedProduct === product.name
   );
-  console.log("find", findProduct);
+
+  // console.log("find", findProduct);
+  // console.log("products", products);
+  // console.log(id);
+  // console.log("do I get the categories?", categories);
 
   return (
     <div>
-      <Typography color="primary" variant="h6" style={{ margin: 20 }}>
+      <Typography variant="h6" style={{ margin: 20 }}>
         Inventory
       </Typography>
 
       <div>
-        {" "}
-        <Link
-          to={`/inventory/${id}/newCategory`}
-          style={{ textDecoration: "none" }}
-        >
-          <Button color="primary" variant="contained" style={{ margin: 20 }}>
-            Add new category
-          </Button>
-        </Link>
+        <MuiThemeProvider theme={theme}>
+          {" "}
+          <Link
+            to={`/inventory/${id}/newCategory`}
+            style={{ textDecoration: "none" }}
+          >
+            <Button color="primary" variant="contained" style={{ margin: 20 }}>
+              Add new category
+            </Button>
+          </Link>
+        </MuiThemeProvider>
       </div>
       <Card>
         <div style={{ width: 300, marginLeft: 20 }}>
@@ -78,15 +98,13 @@ export default function InventoryPage() {
                 {...params}
                 label="Search product"
                 margin="normal"
-                InputProps={{ ...params.InputProps, type: "search" }}
+                // InputProps={{ ...params.InputProps, type: "search" }}
               />
             )}
           />
         </div>
 
-        <TableContainer
-        // component={Paper}
-        >
+        <TableContainer>
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -102,9 +120,7 @@ export default function InventoryPage() {
 
         <div>
           {findProduct ? (
-            <TableContainer
-            // component={Paper}
-            >
+            <TableContainer>
               <Table aria-label="simple table">
                 <TableBody>
                   <TableRow>
@@ -124,6 +140,7 @@ export default function InventoryPage() {
           )}
         </div>
       </Card>
+
       {categories.map((category) => {
         return (
           <Category

@@ -27,7 +27,7 @@ export default function NewCategoryForm() {
     if (name === "") {
       set_message(true);
       console.log("name", name);
-    } else if (name.length > 30) {
+    } else if (name.length > 30 || color.length > 30) {
       console.log("lenght", name.lenght);
       set_messageLength(true);
     } else {
@@ -38,7 +38,7 @@ export default function NewCategoryForm() {
 
   return (
     <div>
-      <Typography color="primary" variant="h4" style={{ margin: 30 }}>
+      <Typography variant="h4" style={{ margin: 20 }}>
         Add a new category
       </Typography>
       {message ? (
@@ -81,7 +81,7 @@ export default function NewCategoryForm() {
             <Button
               size="small"
               variant="contained"
-              color="default"
+              color="primary"
               type="submit"
               onClick={submitFormNewCategory}
             >
