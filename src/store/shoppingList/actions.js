@@ -49,7 +49,7 @@ export function addProductToShoppingList(
       }
     );
     dispatch(
-      showMessageWithTimeout("success", false, response.data.message, 3000)
+      showMessageWithTimeout("success", false, response.data.message, 4000)
     );
     dispatch(addToShoppingListSucces(response.data.addedProduct));
     console.log("response after added product", response.data.addedProduct);

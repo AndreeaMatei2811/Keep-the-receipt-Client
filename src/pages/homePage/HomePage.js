@@ -1,29 +1,39 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
+
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectToken, selectUser } from "../../store/user/selectors";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
 
 export default function HomePage() {
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
   return (
     <div>
-      <h3>This is the home page</h3>
+      <Typography color="primary" variant="h4" style={{ margin: 30 }}>
+        Keep the receipt APP
+      </Typography>
 
       {token ? (
-        <Link to={`/shopping-lists`}>
-          <Button>Shopping Lists</Button>
+        <Link to={`/shopping-lists`} style={{ textDecoration: "none" }}>
+          <Button color="primary" variant="contained" style={{ margin: 30 }}>
+            Go to your Shopping Lists
+          </Button>
         </Link>
       ) : (
-        <div></div>
-        // <Link to={`/login`}>
-        //   <Button>Please log in</Button>
-        // </Link>
+        <Link to={`/login`} style={{ textDecoration: "none" }}>
+          <Button color="primary" variant="contained" style={{ margin: 30 }}>
+            Please log in
+          </Button>
+        </Link>
       )}
       {token ? (
-        <Link to={`/inventory/${user.id}`}>
-          <Button>Inventory</Button>
+        <Link to={`/inventory/${user.id}`} style={{ textDecoration: "none" }}>
+          <Button color="primary" variant="contained" style={{ margin: 30 }}>
+            Go to your Inventory
+          </Button>
         </Link>
       ) : (
         <div></div>
@@ -35,6 +45,14 @@ export default function HomePage() {
       ) : (
         <div></div>
       )} */}
+      <Card>
+        <Typography color="primary" variant="h5" style={{ margin: 30 }}>
+          What is the deal with this app
+        </Typography>
+        <Typography color="primary" variant="h6" style={{ margin: 30 }}>
+          Here is gonna be the coolest story about not buying more than you need
+        </Typography>
+      </Card>
     </div>
   );
 }

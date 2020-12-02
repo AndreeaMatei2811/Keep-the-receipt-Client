@@ -8,9 +8,21 @@ import { useHistory, Link } from "react-router-dom";
 
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-
-import { Formik, Form } from "formik";
 import { Card, Typography } from "@material-ui/core";
+
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+const validationSchema = yup.object({
+  email: yup
+    .string("Enter your email")
+    .email("Enter a valid email")
+    .required("Email is required"),
+  password: yup
+    .string("Enter your password")
+    .max(30, "Password should be of max 30 characters length")
+    .required("Password is required"),
+});
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -27,8 +39,16 @@ export default function Login() {
     }
   }, [token, history]);
 
+  const formik = useFormik({
+    initialValues: {
+      email: email,
+      password: password,
+    },
+    validationSchema: validationSchema,
+    onSubmit: submitForm,
+  });
+
   function submitForm(event) {
-    console.log("hi");
     event.preventDefault();
     dispatch(login(email, password));
     setEmail("");
@@ -41,44 +61,53 @@ export default function Login() {
         Login
       </Typography>
       <Card style={{ margin: 50 }}>
-        {/* <Form> */}
-        <div style={{ margin: 30 }}>
-          <FormControl>
-            <TextField
-              required
-              id="standard-required"
-              label="Email"
-              defaultValue=""
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </FormControl>
-        </div>
-        <div style={{ margin: 30 }}>
-          <FormControl>
-            <TextField
-              required
-              id="filled-password-input"
-              label="Password"
-              type="password"
-              autoComplete="current-password"
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </FormControl>
-        </div>
-        <div style={{ margin: 30 }}>
-          <FormControl>
-            <Button
-              size="small"
-              variant="contained"
-              color="default"
-              type="submit"
-              onClick={submitForm}
-            >
-              Log in
-            </Button>
-          </FormControl>
-        </div>
-        {/* </Form> */}
+        <form onSubmit={submitForm}>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <TextField
+                required
+                id="email"
+                name="email"
+                label="Email"
+                // value={formik.values.email}
+                // onChange={formik.handleChange}
+                onChange={(event) => setEmail(event.target.value)}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
+              />
+            </FormControl>
+          </div>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <TextField
+                required
+                id="password"
+                name="password"
+                label="Password"
+                type="password"
+                // value={formik.values.password}
+                // onChange={formik.handleChange}
+                onChange={(event) => setPassword(event.target.value)}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                helperText={formik.touched.password && formik.errors.password}
+              />
+            </FormControl>
+          </div>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <Button
+                size="small"
+                variant="contained"
+                color="default"
+                type="submit"
+              >
+                Log in
+              </Button>
+            </FormControl>
+          </div>
+        </form>
       </Card>
       <div>
         <Link

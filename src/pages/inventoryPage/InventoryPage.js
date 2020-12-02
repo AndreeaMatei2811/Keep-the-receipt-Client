@@ -19,10 +19,10 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+
 // import { Autocomplete } from "formik-material-ui-lab";
 
 import Button from "@material-ui/core/Button";
-import { InputAdornment } from "@material-ui/core";
 
 export default function InventoryPage() {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ export default function InventoryPage() {
 
   return (
     <div>
-      <Typography color="primary" variant="h6">
+      <Typography color="primary" variant="h6" style={{ margin: 20 }}>
         Inventory
       </Typography>
 
@@ -58,13 +58,13 @@ export default function InventoryPage() {
           to={`/inventory/${id}/newCategory`}
           style={{ textDecoration: "none" }}
         >
-          <Button color="primary" variant="contained">
+          <Button color="primary" variant="contained" style={{ margin: 20 }}>
             Add new category
           </Button>
         </Link>
       </div>
       <Card>
-        <div style={{ width: 300 }}>
+        <div style={{ width: 300, marginLeft: 20 }}>
           <Autocomplete
             freeSolo
             id="free-solo-2-demo"

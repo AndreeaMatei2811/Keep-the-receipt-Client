@@ -24,7 +24,11 @@ import TableRow from "@material-ui/core/TableRow";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1),
+      margin: theme.spacing(0.1),
+    },
+    table: {
+      minWidth: 650,
+      margin: 30,
     },
   },
 }));
@@ -45,7 +49,8 @@ export default function Product(props) {
     set_quantity(quantity + 1);
   }
 
-  function onMinusProduct(productId) {
+  function onMinusProduct(productId, event) {
+    event.preventDefault();
     console.log("quantity", quantity);
     if (quantity > 0) {
       dispatch(decreaseQuantity(productId, quantity - 1));
@@ -90,7 +95,9 @@ export default function Product(props) {
                   >
                     <RemoveIcon />
                   </IconButton>
-                  {quantity}{" "}
+                </TableCell>
+                <TableCell align="center">{quantity} </TableCell>
+                <TableCell align="center">
                   <IconButton
                     aria-label="add"
                     color="primary"
@@ -99,6 +106,7 @@ export default function Product(props) {
                     <AddIcon />
                   </IconButton>
                 </TableCell>
+
                 <TableCell align="center">
                   <IconButton
                     aria-label="delete"
