@@ -1,18 +1,6 @@
-// export function selectShoppingList(state) {
-//   // console.log("do i get to selector", state);
-//   return state.shoppingList.shoppingList;
-// }
-
 export const selectShoppingList = (state) => {
   return state.shoppingList.shoppingList;
 };
-
-// export function selectShoppingListFilteredByStore(storeId) {
-//   return function (state) {
-//     // console.log("do i get to selector", state);
-//     return state.shoppingList.shoppingList;
-//   }
-// }
 
 export const selectShoppingListFilteredByStore = (storeId) => (state) => {
   if (!storeId) {

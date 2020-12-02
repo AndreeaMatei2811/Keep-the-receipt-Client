@@ -14,6 +14,7 @@
     "formik": "^2.2.5",
     "formik-material-ui": "^3.0.0",
     "formik-material-ui-lab": "0.0.7",
+    "material-ui-color-picker": "^3.5.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
@@ -22,7 +23,8 @@
     "react-scripts": "4.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yup": "^0.31.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -17,6 +17,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import MessageBox from "../MessageBox/index";
 
 export default function Category(props) {
   const useStyles = makeStyles((theme) => ({
@@ -27,6 +28,8 @@ export default function Category(props) {
       minWidth: 275,
       marginTop: 22,
       marginBottom: 12,
+      padding: 20,
+      border: props.color,
     },
     table: {
       minWidth: 650,
@@ -50,7 +53,7 @@ export default function Category(props) {
 
   return (
     <Card className={classes.root}>
-      <Typography color="primary" variant="h6">
+      <Typography variant="h6" style={{ margin: 5 }}>
         {props.name}
       </Typography>
       <span>
@@ -58,7 +61,10 @@ export default function Category(props) {
           to={`/inventory/${id}/${props.id}/newProduct`}
           style={{ textDecoration: "none" }}
         >
-          <Button color="primary" variant="contained">
+          <Button
+            variant="contained"
+            style={{ margin: 20, backgroundColor: props.color }}
+          >
             Add new product
           </Button>
         </Link>
@@ -66,6 +72,7 @@ export default function Category(props) {
       <span>
         {" "}
         <Button
+          style={{ marginLeft: 500 }}
           variant="contained"
           color="secondary"
           className={classes.button}
@@ -76,18 +83,24 @@ export default function Category(props) {
         </Button>
       </span>
 
-      <TableContainer
-      // component={Paper}
-      >
-        <Table className={classes.table} aria-label="simple table">
+      <TableContainer>
+        <Table
+          className={classes.table}
+          aria-label="simple table"
+          style={{ background: `${props.color}` }}
+        >
           <TableHead>
-            <TableRow style={{ background: `${props.color}` }}>
+            <TableRow
+            //  style={{ background: `${props.color}` }}
+            >
               <TableCell align="center">Add to cart</TableCell>
               <TableCell align="center">Product name</TableCell>
               <TableCell align="center">Store</TableCell>
               <TableCell align="center">Price</TableCell>
               <TableCell align="center">Unit</TableCell>
+              <TableCell align="center">Quantity -1</TableCell>
               <TableCell align="center">Quantity</TableCell>
+              <TableCell align="center">Quantity +1</TableCell>
               <TableCell align="center">Delete product</TableCell>
             </TableRow>
           </TableHead>

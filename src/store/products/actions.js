@@ -163,25 +163,3 @@ export const increaseQuantity = (productId, quantity) => {
     dispatch(appDoneLoading());
   };
 };
-
-// export function addProductToShoppingList(productId) {
-//   return async (dispatch, getState) => {
-//     const { id, token } = selectUser(getState());
-
-//     dispatch(appLoading());
-//     const response = await axios.post(
-//       `${apiUrl}/products/${id}/${productId}/addProduct`,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       }
-//     );
-//     dispatch(
-//       showMessageWithTimeout("success", false, response.data.message, 3000)
-//     );
-//     // dispatch(newProductSucces(response.data.newProduct));
-
-//     dispatch(appDoneLoading());
-//   };
-// }
