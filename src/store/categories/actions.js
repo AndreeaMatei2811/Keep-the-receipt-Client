@@ -61,9 +61,9 @@ export function newCategory(name, color) {
     dispatch(
       showMessageWithTimeout("success", false, response.data.message, 3000)
     );
-    console.log("what is no name", newCategory);
+
     dispatch(newCategorySucces(response.data.newCategory));
-    console.log("what is new", newCategory);
+    // console.log("what is new", response.data.newCategory);
     dispatch(appDoneLoading());
   };
 }

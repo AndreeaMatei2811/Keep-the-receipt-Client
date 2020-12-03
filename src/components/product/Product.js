@@ -67,7 +67,11 @@ export default function Product(props) {
     <div className={classes.root}>
       <div>
         <TableContainer>
-          <Table className={classes.table} aria-label="simple table">
+          <Table
+            className={classes.table}
+            size="small"
+            aria-label="a dense table"
+          >
             <TableBody>
               <TableRow style={{ marginTop: 1, marginBottom: 1 }}>
                 <TableCell align="center">
@@ -93,7 +97,7 @@ export default function Product(props) {
                     <RemoveIcon />
                   </IconButton>
                 </TableCell>
-                <TableCell align="center">{quantity} </TableCell>
+                <TableCell align="center">{quantity}</TableCell>
                 <TableCell align="center">
                   <IconButton
                     aria-label="add"

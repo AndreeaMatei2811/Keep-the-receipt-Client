@@ -10,9 +10,7 @@ export default function shoppingListReducer(state = initialState, action) {
       };
     }
     case "/addToShoppingListSucces": {
-      console.log("state", state);
       if (action.payload === undefined) {
-        console.log("action payload reducer", action.payload);
         return {
           shoppingList: [state.shoppingList],
         };
@@ -25,12 +23,9 @@ export default function shoppingListReducer(state = initialState, action) {
 
     case "checkProductSuccess":
       const productId = action.payload;
-      console.log("productIs reducer check", productId);
       const newProduct = state.shoppingList.filter(
         (product) => product.shopping_item.productId !== productId
       );
-      console.log("new product", newProduct);
-      console.log("state check", state);
       return {
         state,
         shoppingList: newProduct,

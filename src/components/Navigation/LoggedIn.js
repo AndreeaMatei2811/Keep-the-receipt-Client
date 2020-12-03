@@ -1,11 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../store/user/actions";
-import Button from "@material-ui/core/Button";
 import { selectUser } from "../../store/user/selectors";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import { useHistory, Link } from "react-router-dom";
+
+import { Typography, Button } from "@material-ui/core";
 
 export default function LoggedIn() {
   const dispatch = useDispatch();

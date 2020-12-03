@@ -48,7 +48,6 @@ export default function InventoryPage() {
 
   const { id } = useSelector(selectUser);
   const [searchedProduct, set_searchedProduct] = useState("");
-  console.log("searched", searchedProduct);
 
   useEffect(() => {
     dispatch(fetchCategories(id));
@@ -59,6 +58,7 @@ export default function InventoryPage() {
     (product) => searchedProduct === product.name
   );
 
+  // console.log("searched", searchedProduct);
   // console.log("find", findProduct);
   // console.log("products", products);
   // console.log(id);
@@ -66,12 +66,12 @@ export default function InventoryPage() {
 
   return (
     <div>
-      <Typography variant="h6" style={{ margin: 20 }}>
-        Inventory
-      </Typography>
+      <MuiThemeProvider theme={theme}>
+        <Typography variant="h6" style={{ margin: 20 }}>
+          Inventory
+        </Typography>
 
-      <div>
-        <MuiThemeProvider theme={theme}>
+        <div>
           {" "}
           <Link
             to={`/inventory/${id}/newCategory`}
@@ -81,77 +81,79 @@ export default function InventoryPage() {
               Add new category
             </Button>
           </Link>
-        </MuiThemeProvider>
-      </div>
-      <Card>
-        <div style={{ width: 300, marginLeft: 20 }}>
-          <Autocomplete
-            freeSolo
-            id="free-solo-2-demo"
-            disableClearable
-            options={products.map((product) => product.name)}
-            onChange={(event, newValue) => {
-              set_searchedProduct(newValue);
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Search product"
-                margin="normal"
-                // InputProps={{ ...params.InputProps, type: "search" }}
-              />
+        </div>
+        <Card>
+          <div style={{ width: 300, marginLeft: 20 }}>
+            <Autocomplete
+              freeSolo
+              id="free-solo-2-demo"
+              // disableClearable
+              options={products.map((product) => product.name)}
+              onChange={(event, newValue) => {
+                set_searchedProduct(newValue);
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Search product"
+                  margin="normal"
+                  // InputProps={{ ...params.InputProps, type: "search" }}
+                />
+              )}
+            />
+          </div>
+
+          <TableContainer>
+            <Table aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Product name</TableCell>
+                  <TableCell align="center">Store</TableCell>
+                  <TableCell align="center">Price</TableCell>
+                  <TableCell align="center">Unit</TableCell>
+                  <TableCell align="center">Quantity</TableCell>
+                </TableRow>
+              </TableHead>
+            </Table>
+          </TableContainer>
+
+          <div>
+            {findProduct ? (
+              <TableContainer>
+                <Table aria-label="simple table">
+                  <TableBody>
+                    <TableRow>
+                      <TableCell align="center">{findProduct.name}</TableCell>
+                      <TableCell align="center">{findProduct.store}</TableCell>
+                      <TableCell align="center">
+                        {findProduct.priceInEuro}
+                      </TableCell>
+                      <TableCell align="center">{findProduct.unit}</TableCell>
+                      <TableCell align="center">
+                        {findProduct.quantity}
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            ) : (
+              <div></div>
             )}
-          />
-        </div>
+          </div>
+        </Card>
 
-        <TableContainer>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">Product name</TableCell>
-                <TableCell align="center">Store</TableCell>
-                <TableCell align="center">Price</TableCell>
-                <TableCell align="center">Unit</TableCell>
-                <TableCell align="center">Quantity</TableCell>
-              </TableRow>
-            </TableHead>
-          </Table>
-        </TableContainer>
-
-        <div>
-          {findProduct ? (
-            <TableContainer>
-              <Table aria-label="simple table">
-                <TableBody>
-                  <TableRow>
-                    <TableCell align="center">{findProduct.name}</TableCell>
-                    <TableCell align="center">{findProduct.store}</TableCell>
-                    <TableCell align="center">
-                      {findProduct.priceInEuro}
-                    </TableCell>
-                    <TableCell align="center">{findProduct.unit}</TableCell>
-                    <TableCell align="center">{findProduct.quantity}</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          ) : (
-            <div></div>
-          )}
-        </div>
-      </Card>
-
-      {categories.map((category) => {
-        return (
-          <Category
-            key={category.id}
-            id={category.id}
-            name={category.name}
-            color={category.color}
-            products={category.products}
-          />
-        );
-      })}
+        {categories.map((category) => {
+          return (
+            <Category
+              key={category.id}
+              id={category.id}
+              name={category.name}
+              color={category.color}
+              products={category.products}
+            />
+          );
+        })}
+      </MuiThemeProvider>
     </div>
   );
 }

@@ -52,7 +52,7 @@ export function addProductToShoppingList(
       showMessageWithTimeout("success", false, response.data.message, 4000)
     );
     dispatch(addToShoppingListSucces(response.data.addedProduct));
-    console.log("response after added product", response.data.addedProduct);
+    // console.log("response after added product", response.data.addedProduct);
     dispatch(appDoneLoading());
   };
 }
@@ -69,7 +69,7 @@ export function fetchShoppingList(id) {
     const shoppingList = res.data;
 
     dispatch(shoppingListFetched(shoppingList));
-    console.log("what shopping list do i get", shoppingList);
+    // console.log("what shopping list do i get", shoppingList);
     dispatch(appDoneLoading());
   };
 }
@@ -87,7 +87,7 @@ export const checkProduct = (productId) => {
           },
         }
       );
-      console.log("response after check", response);
+      // console.log("response after check", response);
       showMessageWithTimeout("success", false, response.message, 3000);
       dispatch(checkProductSuccess(productId));
 
