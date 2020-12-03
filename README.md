@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+<h3 align="left">🧾 Keep the receipt - an app to help you keep track of your stuff 🧾</h3>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3 align="left">About the app</h3>
 
-## Available Scripts
+<p align="left">Keep the receipt app offers an easy way to always keep track of the stuff you already have so you don't buy what you don't need. Users can optimize their expenses by taking advantage of the built in shopping list functionality. On top of this users can now easily organize their storage spaces by using the inventory management feature.
 
-In the project directory, you can run:
+Never run out of ingredients for your tasty homemade pizza.
+All you need to do is to... <strong>Keep the receipt.</strong>
 
-### `npm start`
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<a href="https://keep-the-receipt.netlify.app/">Here you find a working version</a>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<h3>App demo</h3>
+<p align="left"><img src="./images/search.png" alt="app-photo" /></p>
+<p align="left"><img src="./images/table.png" alt="app-photo" /></p>
 
-### `npm test`
+<h3 align="left">Used technologies</h3>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<ul>
+<li>React</li>
+<li>Redux</li>
+<li>NodeJS</li>
+<li>Express</li>
+<li>REST APIs</li>
+<li>Sequelize ORM</li>
+<li>Material-UI</li>
+</ul>
 
-### `npm run build`
+<h3 align="left">Goals for this project</h3>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<ul>
+<li>practice full-stack app development</li>
+<li>build a working prototype in 2 weeks</li>
+<li>apply what we learned in Codaisseur's bootcamp</li>
+<li>extend with new technology independently</li>
+<li>practice appropiate version control</li>
+<li>setup a project layout by means of wireframes, database models and project boards</li>
+</ul>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h3 align="left">User Stories</h3>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<ul>
+<li>As a page visitor, I can sign up and log in as a user.</li>
+<li>As a user, I can see all my categories with all my products in my inventory.</li>
+<li>As a user, I can create and delete categories for my inventory.</li>
+<li>As a user, I can add or delete products to each category.</li>
+<li>As a user, I can search for a product from all categories.</li>
+<li>As a user, I can modify the quantity of each product.</li>
+<li>As a user, I can add every product to a shopping list.</li>
+<li>As a user, I have a shopping list with all added products.</li>
+<li>As a user, I can sort the products in my shopping list by the store I can buy them from.</li>
+</ul>
 
-### `npm run eject`
+<h3 align="left">Project Board</h3>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<p>Go to <a href="https://github.com/users/AndreeaMatei2811/projects/1">project board</a></p>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<h3 align="left">Wireframe</h3>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<p>Go to <a href="https://wireframepro.mockflow.com/editor.jsp?editor=off&perm=Owner&projectid=M03515d0bc68d46d7254bff1590fba3061605887884080&publicid=f1c2cf986987475791e59008e8cbc269#/page/9180e9b663ae4374ae0f4a1372e8a99a"> wireframe</a></p>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<h3 align="left">Datamodel</h3>
 
-## Learn More
+<p>Go to <a href="https://dbdiagram.io/d/5fbb620d3a78976d7b7cfe84">datamodel</a></p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<h3 align="left">Backend server repo</h3>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p>Go to <a href="https://github.com/AndreeaMatei2811/Keep-the-receipt-Server">the backend repository</a></p>
