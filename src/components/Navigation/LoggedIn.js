@@ -26,17 +26,17 @@ export default function LoggedIn() {
       </div>
       <Link
         to={`/inventory/${user.id}`}
-        style={{ textDecoration: "none", marginLeft: 50 }}
+        style={{ textDecoration: "none", marginLeft: "auto" }}
       >
         <Button>Inventory</Button>
       </Link>
       <Link
         to={`/shopping-lists`}
-        style={{ textDecoration: "none", marginLeft: 50 }}
+        style={{ textDecoration: "none", marginLeft: "auto" }}
       >
         <Button>Shopping Lists</Button>
       </Link>
-      <div style={{ marginLeft: 150 }}>
+      <div style={{ marginLeft: "auto" }}>
         {" "}
         <Button
           size="small"

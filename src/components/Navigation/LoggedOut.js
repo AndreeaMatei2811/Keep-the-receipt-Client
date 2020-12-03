@@ -23,7 +23,10 @@ export default function LoggedOut() {
   return (
     <>
       <MuiThemeProvider theme={theme}>
-        <Link to={`/login`} style={{ textDecoration: "none", marginLeft: 750 }}>
+        <Link
+          to={`/login`}
+          style={{ textDecoration: "none", marginLeft: "auto" }}
+        >
           <Button variant="contained" color="primary">
             Login
           </Button>

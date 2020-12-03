@@ -67,7 +67,7 @@ export default function Category(props) {
       <span>
         {" "}
         <Button
-          style={{ marginLeft: 500 }}
+          style={{ marginLeft: "auto" }}
           variant="contained"
           color="secondary"
           className={classes.button}

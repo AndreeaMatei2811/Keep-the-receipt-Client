@@ -6,8 +6,22 @@ import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 import { Link } from "react-router-dom";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 export default function Navigation() {
+  const classes = useStyles();
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -30,7 +44,7 @@ export default function Navigation() {
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
   return (
-    <div>
+    <div className={classes.root}>
       <MuiThemeProvider theme={theme}>
         <AppBar position="static" color="default">
           <Toolbar>

@@ -66,10 +66,18 @@ export default function HomePage() {
       </MuiThemeProvider>
       <Card>
         <Typography variant="h5" style={{ margin: 20 }}>
-          What is the deal with this app
+          <strong>About the app</strong>
         </Typography>
         <Typography variant="h6" style={{ margin: 20 }}>
-          Here is gonna be the coolest story about not buying more than you need
+          Keep the receipt app offers an easy way to always keep track of the
+          stuff you already have so you don't buy what you don't need. You can
+          optimize your expenses by taking advantage of the built in shopping
+          list functionality. On top of this you can now easily organize you
+          storage spaces by using the inventory management feature.
+        </Typography>
+        <Typography variant="h6" style={{ margin: 20 }}>
+          Never run out of ingredients for your tasty homemade pizza. All you
+          need to do is to... <strong>Keep the receipt!</strong>
         </Typography>
       </Card>
     </div>
