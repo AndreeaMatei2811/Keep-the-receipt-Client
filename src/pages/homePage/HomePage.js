@@ -72,7 +72,7 @@ export default function HomePage() {
           Keep the receipt app offers an easy way to always keep track of the
           stuff you already have so you don't buy what you don't need. You can
           optimize your expenses by taking advantage of the built in shopping
-          list functionality. On top of this you can now easily organize you
+          list functionality. On top of this you can now easily organize your
           storage spaces by using the inventory management feature.
         </Typography>
         <Typography variant="h6" style={{ margin: 20 }}>
