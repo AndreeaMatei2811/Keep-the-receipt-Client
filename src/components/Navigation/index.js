@@ -50,7 +50,7 @@ export default function Navigation() {
           <Toolbar>
             <Link to={`/`} style={{ textDecoration: "none" }}>
               <Typography variant="h6" style={{ color: "#000" }}>
-                <b> Keep the receipt</b>
+                <b> 🧾 Keep the receipt</b>
               </Typography>
             </Link>
             {loginLogoutControls}

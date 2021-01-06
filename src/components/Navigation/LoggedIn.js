@@ -36,6 +36,12 @@ export default function LoggedIn() {
       >
         <Button>Shopping Lists</Button>
       </Link>
+      <Link
+        to={`/budget`}
+        style={{ textDecoration: "none", marginLeft: "auto" }}
+      >
+        <Button>Budget</Button>
+      </Link>
       <div style={{ marginLeft: "auto" }}>
         {" "}
         <Button
