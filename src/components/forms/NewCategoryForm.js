@@ -4,13 +4,7 @@ import { useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { newCategory } from "../../store/categories/actions";
 
-import {
-  Card,
-  Typography,
-  TextField,
-  FormControl,
-  Button,
-} from "@material-ui/core";
+import { Typography, TextField, FormControl, Button } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
@@ -69,45 +63,44 @@ export default function NewCategoryForm() {
         ) : (
           <div></div>
         )}
-        <Card style={{ margin: 50 }}>
-          <form>
-            <div style={{ margin: 30 }}>
-              <FormControl>
-                <TextField
-                  required
-                  id="standard-required"
-                  label="Name"
-                  value={name}
-                  onChange={(e) => set_name(e.target.value)}
-                />
-              </FormControl>
-            </div>
-            <div style={{ margin: 30 }}>
-              <FormControl>
-                <TextField id="color" label="Pick a color" />
-                <input
-                  style={{ margin: 5, width: 150 }}
-                  type="color"
-                  value={color}
-                  onChange={(e) => set_color(e.target.value)}
-                />
-              </FormControl>
-            </div>
-            <div style={{ margin: 30 }}>
-              <FormControl>
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  onClick={submitFormNewCategory}
-                >
-                  Add category
-                </Button>
-              </FormControl>
-            </div>
-          </form>
-        </Card>
+
+        <form>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <TextField
+                required
+                id="standard-required"
+                label="Name"
+                value={name}
+                onChange={(e) => set_name(e.target.value)}
+              />
+            </FormControl>
+          </div>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <TextField id="color" label="Pick a color" />
+              <input
+                style={{ margin: 5, width: 150 }}
+                type="color"
+                value={color}
+                onChange={(e) => set_color(e.target.value)}
+              />
+            </FormControl>
+          </div>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <Button
+                size="small"
+                variant="contained"
+                color="primary"
+                type="submit"
+                onClick={submitFormNewCategory}
+              >
+                Add category
+              </Button>
+            </FormControl>
+          </div>
+        </form>
       </MuiThemeProvider>
     </div>
   );

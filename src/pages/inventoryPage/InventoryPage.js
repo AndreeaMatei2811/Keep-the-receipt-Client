@@ -7,6 +7,7 @@ import { selectProducts } from "../../store/products/selectors";
 import Category from "../../components/category/Category";
 import { fetchProducts } from "../../store/products/actions";
 import { selectUser } from "../../store/user/selectors";
+import NewCategoryForm from "../../components/forms/NewCategoryForm";
 import {
   Typography,
   TextField,
@@ -17,6 +18,10 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
 } from "@material-ui/core";
 
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -48,11 +53,19 @@ export default function InventoryPage() {
 
   const { id } = useSelector(selectUser);
   const [searchedProduct, set_searchedProduct] = useState("");
+  const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCategories(id));
     dispatch(fetchProducts(id));
   }, [dispatch, id]);
+
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
 
   const findProduct = products.find(
     (product) => searchedProduct === product.name
@@ -70,8 +83,52 @@ export default function InventoryPage() {
         <Typography variant="h6" style={{ margin: 20 }}>
           Inventory
         </Typography>
-
         <div>
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleClickOpen}
+              style={{
+                margin: 20,
+              }}
+            >
+              Add new category
+            </Button>
+            <Dialog
+              fullWidth
+              maxWidth="sm"
+              open={openDialog}
+              onClose={handleCloseDialog}
+              aria-labelledby="form-dialog-title"
+            >
+              <DialogActions>
+                <Button
+                  onClick={handleCloseDialog}
+                  color="secondary"
+                  variant="contained"
+                >
+                  Cancel
+                </Button>
+              </DialogActions>
+
+              {/* <DialogTitle id="form-dialog-title">Add new category</DialogTitle> */}
+              <DialogContent>
+                <NewCategoryForm />
+              </DialogContent>
+              {/* <DialogActions>
+                <Button
+                  // onClick={submitNewNotebook}
+                  color="primary"
+                  variant="contained"
+                >
+                  Add new category
+                </Button>
+              </DialogActions> */}
+            </Dialog>
+          </div>
+        </div>
+        {/* <div>
           {" "}
           <Link
             to={`/inventory/${id}/newCategory`}
@@ -81,7 +138,7 @@ export default function InventoryPage() {
               Add new category
             </Button>
           </Link>
-        </div>
+        </div> */}
         <Card>
           <div style={{ width: 300, marginLeft: 20 }}>
             <Autocomplete
