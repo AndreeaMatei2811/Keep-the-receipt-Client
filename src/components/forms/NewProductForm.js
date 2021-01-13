@@ -80,69 +80,68 @@ export default function NewProductForm() {
         ) : (
           <div></div>
         )}
-        <Card style={{ margin: 50 }}>
-          <form>
-            <div style={{ margin: 30 }}>
-              <FormControl>
-                <TextField
-                  required
-                  id="standard-required"
-                  label="Name"
-                  onChange={(e) => set_name(e.target.value)}
-                />
-              </FormControl>
-            </div>
-            <div style={{ margin: 30 }}>
-              <FormControl>
-                <TextField
-                  id="standard-required"
-                  label="Store"
-                  onChange={(e) => set_store(e.target.value)}
-                />
-              </FormControl>
-            </div>
-            <div style={{ margin: 30 }}>
-              <FormControl>
-                <TextField
-                  id="standard-required"
-                  label="Price"
-                  onChange={(e) => set_priceInEuro(e.target.value)}
-                />
-              </FormControl>
-            </div>
-            <div style={{ margin: 30 }}>
-              <FormControl>
-                <TextField
-                  id="standard-required"
-                  label="Unit"
-                  onChange={(e) => set_unit(e.target.value)}
-                />
-              </FormControl>
-            </div>
-            <div style={{ margin: 30 }}>
-              <FormControl>
-                <TextField
-                  id="standard-required"
-                  label="Quantity"
-                  onChange={(e) => set_quantity(e.target.value)}
-                />
-              </FormControl>
-            </div>
-            <div style={{ margin: 30 }}>
-              <FormControl>
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  onClick={submitFormNewProduct}
-                >
-                  Add product
-                </Button>
-              </FormControl>
-            </div>
-          </form>
-        </Card>
+
+        <form>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <TextField
+                required
+                id="standard-required"
+                label="Name"
+                onChange={(e) => set_name(e.target.value)}
+              />
+            </FormControl>
+          </div>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <TextField
+                id="standard-required"
+                label="Store"
+                onChange={(e) => set_store(e.target.value)}
+              />
+            </FormControl>
+          </div>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <TextField
+                id="standard-required"
+                label="Price"
+                onChange={(e) => set_priceInEuro(e.target.value)}
+              />
+            </FormControl>
+          </div>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <TextField
+                id="standard-required"
+                label="Unit"
+                onChange={(e) => set_unit(e.target.value)}
+              />
+            </FormControl>
+          </div>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <TextField
+                id="standard-required"
+                label="Quantity"
+                onChange={(e) => set_quantity(e.target.value)}
+              />
+            </FormControl>
+          </div>
+          <div style={{ margin: 30 }}>
+            <FormControl>
+              <Button
+                size="small"
+                variant="contained"
+                color="primary"
+                type="submit"
+                onClick={submitFormNewProduct}
+              >
+                Add product
+              </Button>
+            </FormControl>
+          </div>
+        </form>
       </MuiThemeProvider>
     </div>
   );

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { deleteCategory } from "../../store/categories/actions";
 import Product from "../../components/product/Product";
 import { selectProducts } from "../../store/products/selectors";
+import NewProductForm from "../forms/NewProductForm";
 
 import Typography from "@material-ui/core/Typography";
 import {
@@ -16,6 +17,10 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
@@ -39,6 +44,14 @@ export default function Category(props) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const products = useSelector(selectProducts);
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
 
   const onDeleteCategory = (id) => {
     dispatch(deleteCategory(id));
@@ -52,7 +65,50 @@ export default function Category(props) {
     <Card className={classes.root}>
       <Typography variant="h6">{props.name}</Typography>
       <span>
-        <Link
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleClickOpen}
+          style={{
+            margin: 20,
+          }}
+        >
+          Add new product
+        </Button>
+
+        <Dialog
+          fullWidth
+          maxWidth="sm"
+          open={openDialog}
+          onClose={handleCloseDialog}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogActions>
+            <Button
+              onClick={handleCloseDialog}
+              color="secondary"
+              variant="contained"
+            >
+              Cancel
+            </Button>
+          </DialogActions>
+
+          {/* <DialogTitle id="form-dialog-title">Add new category</DialogTitle> */}
+          <DialogContent>
+            <NewProductForm />
+          </DialogContent>
+          {/* <DialogActions>
+                <Button
+                  // onClick={submitNewNotebook}
+                  color="primary"
+                  variant="contained"
+                >
+                  Add new category
+                </Button>
+              </DialogActions> */}
+        </Dialog>
+
+        {/* <Link
           to={`/inventory/${id}/${props.id}/newProduct`}
           style={{ textDecoration: "none" }}
         >
@@ -62,7 +118,7 @@ export default function Category(props) {
           >
             Add new product
           </Button>
-        </Link>
+        </Link> */}
       </span>
       <span>
         {" "}
